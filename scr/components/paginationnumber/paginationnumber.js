@@ -22,9 +22,20 @@ function createPaginationNumber(content, isActive) {
 
 /**
  * Creates the pagination container.
+ * @param {number} currentPage - The currently active page
+ * @param {number} totalPages - The total number of pages
  * @returns {HTMLElement} The pagination container
  */
-function Pagination() {
+function Pagination(currentPage = 1, totalPages = 1) {
+    const navigateToPage = (page) => {
+        updateLibrary({ page: page });
+    };
+
+    const pages = [];
+    for (let i = 1; i <= totalPages; i++) {
+        pages.push(createPaginationNumber(i, currentPage === i));
+    }
+
     return createElement('nav', {
         className: 'w-full py-12 flex justify-center',
         'data-name': 'Pagination Navigation',
@@ -33,22 +44,30 @@ function Pagination() {
         createElement('div', {
             className: "flex gap-3 items-center justify-center p-1"
         },
-            // Previous Button (Simplified for now)
+            // Previous Button
             createElement('div', {
-                className: "size-10 flex items-center justify-center rounded-lg border border-gray-200 text-gray-400 hover:text-blue-600 hover:border-blue-300 transition-colors cursor-pointer mr-2 bg-white"
+                className: `size-10 flex items-center justify-center rounded-lg border border-gray-200 ${currentPage === 1 ? 'text-gray-300 pointer-events-none' : 'text-gray-600 hover:text-blue-600 hover:border-blue-300'} transition-colors cursor-pointer mr-2 bg-white`,
+                onclick: () => currentPage > 1 && navigateToPage(currentPage - 1)
             }, '←'),
 
             // Numbers
-            createPaginationNumber(1, true),
-            createPaginationNumber(2, false),
-            createPaginationNumber(3, false),
-            createPaginationNumber(4, false),
-            createElement('span', { className: "text-gray-400 mx-1" }, '...'),
-            createPaginationNumber(10, false),
+            createElement('div', {
+                className: "flex gap-3",
+                onclick: (e) => {
+                    const btn = e.target.closest('[role="button"]');
+                    if (btn) {
+                        const page = parseInt(btn.getAttribute('aria-label').replace('Page ', ''));
+                        if (!isNaN(page)) navigateToPage(page);
+                    }
+                }
+            },
+                ...pages
+            ),
 
             // Next Button
             createElement('div', {
-                className: "size-10 flex items-center justify-center rounded-lg border border-gray-200 text-gray-600 hover:text-blue-600 hover:border-blue-300 transition-colors cursor-pointer ml-2 bg-white"
+                className: `size-10 flex items-center justify-center rounded-lg border border-gray-200 ${currentPage === totalPages ? 'text-gray-300 pointer-events-none' : 'text-gray-600 hover:text-blue-600 hover:border-blue-300'} transition-colors cursor-pointer ml-2 bg-white`,
+                onclick: () => currentPage < totalPages && navigateToPage(currentPage + 1)
             }, '→')
         )
     );
