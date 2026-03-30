@@ -35,3 +35,18 @@ hr {
 .quiz-btn:hover {
   background: #3a2382;
 }
+
+.lesson input[disabled] + label {
+    color: #a0a0a0;
+    cursor: not-allowed;
+}
+
+.lesson input:disabled {
+    cursor: not-allowed;
+    filter: grayscale(1);
+}
+
+.quiz-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
