@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Store</title>
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="../../css/style.css">
+
+  <!-- Page CSS -->
+  <link rel="stylesheet" href="bookstore.css">
+</head>
+<body>
+
+  <div class="container">
+    <h2>Book Store</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <img src="../../assets/book1.jpg">
+        <h3>Book 1</h3>
+        <p>$12</p>
+        <button onclick="goToPayment('Book 1', 12, '../../assets/book1.jpg')">
+          Buy Now
+        </button>
+      </div>
+
+      <div class="card">
+        <img src="../../assets/book2.jpg">
+        <h3>Book 2</h3>
+        <p>$15</p>
+        <button onclick="goToPayment('Book 2', 15, '../../assets/book2.jpg')">
+          Buy Now
+        </button>
+      </div>
+
+      <div class="card">
+        <img src="../../assets/book3.jpg">
+        <h3>Book 3</h3>
+        <p>$18</p>
+        <button onclick="goToPayment('Book 3', 18, '../../assets/book3.jpg')">
+          Buy Now
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function goToPayment(title, price, image) {
+      const book = { title, price, image };
+      localStorage.setItem("selectedBook", JSON.stringify(book));
+      window.location.href = "../payment/payment.html";
+    }
+  </script>
+
+</body>
+</html>

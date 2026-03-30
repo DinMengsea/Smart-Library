@@ -1,0 +1,79 @@
+/* Layout */
+.payment-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 30px;
+}
+
+/* Left & Right sections */
+.left,
+.right {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 48%;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Titles */
+h2 {
+  margin-bottom: 15px;
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+/* Row for small inputs */
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+/* Order summary image */
+.right img {
+  width: 120px;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+/* Price */
+.right h3 {
+  color: #4b3cc4;
+  margin: 10px 0;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  background: #4b3cc4;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .payment-container {
+    flex-direction: column;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+  }
+}
