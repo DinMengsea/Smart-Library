@@ -268,6 +268,7 @@ const allBooks = [
         rating: 5,
         category: 'Educational',
         education: 'Mathematics',
+        language: 'Khmer',
         grade: 'Grade 11',
         isMarked: false
     },
@@ -279,6 +280,7 @@ const allBooks = [
         rating: 5,
         category: 'Educational',
         education: 'Khmer Literature',
+        language: 'Khmer',
         grade: 'Grade 11',
         isMarked: false
     },
@@ -290,6 +292,7 @@ const allBooks = [
         rating: 4,
         category: 'Educational',
         education: 'Mathematics',
+        language: 'Khmer',
         grade: 'Grade 9',
         isMarked: false
     },
@@ -301,6 +304,7 @@ const allBooks = [
         rating: 5,
         category: 'Educational',
         education: 'Mathematics',
+        language: 'Khmer',
         grade: 'Grade 6',
         isMarked: false
     },
@@ -312,6 +316,7 @@ const allBooks = [
         rating: 4,
         category: 'Educational',
         education: 'Physics',
+        language: 'Khmer',
         grade: 'Grade 11',
         isMarked: false
     },
@@ -323,6 +328,7 @@ const allBooks = [
         rating: 5,
         category: 'Educational',
         education: 'Social Studies',
+        language: 'Khmer',
         grade: 'Grade 11',
         isMarked: false
     },
@@ -334,6 +340,7 @@ const allBooks = [
         rating: 5,
         category: 'Educational',
         education: 'economics',
+        language: 'Khmer',
         grade: 'Grade 11',
         isMarked: false
     },
@@ -345,6 +352,7 @@ const allBooks = [
         rating: 5,
         category: 'Educational',
         education: 'Geography',
+        language: 'Khmer',
         grade: 'Grade 11',
         isMarked: false
     },
@@ -356,6 +364,7 @@ const allBooks = [
         rating: 4,
         category: 'Educational',
         education: 'History',
+        language: 'Khmer',
         grade: 'Grade 11',
         isMarked: false
     },
@@ -367,6 +376,7 @@ const allBooks = [
         rating: 4,
         category: 'Educational',
         education: 'Khmer Literature',
+        language: 'Khmer',
         grade: 'Grade 4',
         isMarked: false
     }
