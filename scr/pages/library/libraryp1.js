@@ -12,8 +12,6 @@ function LibraryPage1() {
     mainContent.appendChild(SearchAndFilters());
     
     const trendingSection = TrendingBooksSection();
-    // Add pagination to trending section
-    trendingSection.appendChild(Pagination());
     mainContent.appendChild(trendingSection);
 
     container.appendChild(mainContent);
@@ -23,9 +21,12 @@ function LibraryPage1() {
 }
 
 // Initialize the app
-document.addEventListener('DOMContentLoaded', function() {
-    const root = document.getElementById('root');
-    if (root) {
-        root.appendChild(LibraryPage1());
-    }
-});
+if (!document.body.hasAttribute('data-app-initialized')) {
+    document.addEventListener('DOMContentLoaded', function() {
+        const root = document.getElementById('root');
+        if (root && !root.hasChildNodes()) {
+            root.appendChild(LibraryPage1());
+            document.body.setAttribute('data-app-initialized', 'true');
+        }
+    });
+}
