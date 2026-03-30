@@ -1,0 +1,52 @@
+.lesson-container {
+  width: 320px;
+  margin: 50px auto;
+  background: #EDEEFA;
+  padding: 20px;
+  border-radius: 10px;
+  font-family: Arial;
+}
+
+.lesson {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 0;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #888;
+}
+
+.quiz-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background: #4b2ea3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.quiz-btn:hover {
+  background: #3a2382;
+}
+
+.lesson input[disabled] + label {
+    color: #a0a0a0;
+    cursor: not-allowed;
+}
+
+.lesson input:disabled {
+    cursor: not-allowed;
+    filter: grayscale(1);
+}
+
+.quiz-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
