@@ -18,4 +18,4 @@ export async function HeaderComponent(containerId) {
     } catch (error) {
         console.error('Error loading header:', error);
     }
-}
+}   

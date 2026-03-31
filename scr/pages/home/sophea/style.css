@@ -1,0 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Epilogue', sans-serif;
+    /* background-color: #86C8F7;  */
+    position: relative;
+    min-height: 100vh;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+}
+ /* body {
+    font-family: 'Epilogue', sans-serif;
+    min-height: 100vh;
+    color: #FFFFFF;
+    position: relative;
+    background-color: #86C8F7; /* Fallback color */
+    /* overflow-x: hidden; */
+/* } */
+
+/* body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('Image/BG.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.5;
+    z-index: -1;  */
+ /* }  */ 
+ /* body::before { */
+    /* content: "";
+    position: fixed;
+    inset: 0;
+    background: url('Image/BG.png') center/cover no-repeat;
+    opacity: 0.5;
+    z-index: -1;
+} */ 
+ body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background: url('Image/BG.png') center/cover no-repeat;
+    opacity: 0.5; /* 🔥 THIS IS YOUR 50% */
+
+    z-index: -1;
+}
+  
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+}
+
+.logo-container { display: flex; align-items: center; gap: 15px; }
+
+/* LOGO UPDATE: Increased size to 65px */
+.main-logo {
+    width: 65px; 
+    height: auto;
+    object-fit: contain;
+}
+
+.brand-name { font-weight: 700; font-size: 1.4rem; }
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    position: relative;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+.nav-underline {
+    position: absolute;
+    bottom: -8px;
+    height: 3px;
+    background-color: #2595FC;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-section {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding-bottom: 60px;
+}
+
+.feature-card {
+    background: #FFFFFF;
+    width: 230px;
+    padding: 40px 20px;
+    border-radius: 30px;
+    text-align: center;
+    color: #222222;
+    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease;
+}
+
+.feature-card:hover { transform: translateY(-10px); }
+
+.icon-box { margin: 0 auto 20px; width: 78px; height: 78px; }
+
+.icon-circle-box {
+    width: 80px; height: 80px;
+    background: #F5FBFF;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    margin: 0 auto 20px;
+}
+
+.icon-frame-box {
+    position: relative;
+    width: 85px; height: 85px;
+    background: #F5FBFF;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    margin: 0 auto 20px;
+    overflow: hidden;
+    display: flex; justify-content: center; align-items: center;
+}
+
+.brain-vector { width: 50px; height: 50px; }
+.brain-vector path { stroke: #F84B4E; stroke-width: 1.2px; fill: none; }
+.abstract-vector { width: 84%; height: 100%; }
+
+.auth-group { display: flex; gap: 15px; }
+
+.btn-signup, .btn-login {
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-signup { background: white; color: #3C2CB4; }
+.btn-signup:hover { background: #f0f0f0; transform: scale(1.05); }
+
+.btn-login { background: #3C2CB4; color: white; }
+.btn-login:hover { background: #2e2191; box-shadow: 0 4px 15px rgba(60, 44, 180, 0.4); transform: scale(1.05); }
+
+.footer {
+    text-align: center;
+    padding: 40px 0;
+    margin-top: auto;
+}
+
+.footer-links a {
+    color: #FFFFFF;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.footer-links a:hover { opacity: 1; text-decoration: underline; }
+
+.hero { display: flex; justify-content: space-between; align-items: center; padding: 40px 10%; flex: 1; }
+.hero-text h1 { font-size: 70px; line-height: 80px; }
+.hero-img-box img { width: 500px; }
