@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Recycle bin (Windows)
+$RECYCLE.BIN/
+
+# macOS system files
+.AppleDouble
+.LSOverride
+
+# Spotlight / indexing (macOS)
+.Spotlight-V100
+.Trashes
+
+# pdf files
+*.pdf
