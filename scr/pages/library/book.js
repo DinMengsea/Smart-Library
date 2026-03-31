@@ -1,26 +1,4 @@
 /**
- * Creates a star rating component.
- * @param {number} rating - Number of stars to display (default: 5)
- * @returns {HTMLElement} The star rating container
- */
-function createStarRating(rating = 5) {
-    const stars = [];
-    for (let i = 0; i < 5; i++) {
-        const isFilled = i < rating;
-        stars.push(
-            createElement('div', {
-                className: `relative shrink-0 size-5 ${isFilled ? 'opacity-100' : 'opacity-30'}`,
-                'data-name': 'Star'
-            }, createImage(images.star, '', 'absolute inset-0 max-w-none object-contain pointer-events-none size-full'))
-        );
-    }
-    return createElement('div', {
-        className: "flex gap-1 items-center",
-        'data-name': 'Star Rating'
-    }, ...stars);
-}
-
-/**
  * Creates the action buttons for a book.
  * @param {boolean} isMarked - Whether the book is marked
  * @param {boolean} showViewCourse - Whether to show the 'View Course' button
@@ -90,8 +68,9 @@ function BookDisplay(book) {
     const shortDesc = description.replace('Read more ...', '');
     
     return createElement('div', {
-        className: "bg-white flex flex-col sm:flex-row gap-6 p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 w-full max-w-4xl",
-        'data-name': 'Book Card'
+        className: "bg-white flex flex-col sm:flex-row gap-6 p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 w-full max-w-4xl cursor-pointer",
+        'data-name': 'Book Card',
+        onclick: () => navigateTo('detail', { book })
     },
         // Book Cover Container
         createElement('div', {
@@ -136,14 +115,22 @@ function BookDisplay(book) {
                 }, shortDesc),
                 createElement('button', {
                     className: "text-blue-500 hover:text-blue-700 text-xs font-semibold mt-1 transition-colors underline-offset-4 hover:underline",
-                    type: 'button'
+                    type: 'button',
+                    onclick: (e) => {
+                        e.stopPropagation();
+                        navigateTo('detail', { book });
+                    }
                 }, 'Read more...')
             ),
 
             // Action Buttons
-            BookActions(isMarked, category === 'Educational', () => {
-                toggleMarkBook(title);
-            })
+            createElement('div', {
+                onclick: (e) => e.stopPropagation()
+            }, 
+                BookActions(isMarked, category === 'Educational', () => {
+                    toggleMarkBook(title);
+                })
+            )
         )
     );
 }
@@ -389,13 +376,37 @@ let libraryState = {
     language: 'Language',
     education: 'Education',
     grade: 'Grade',
+    showMarkedOnly: false,
     page: 1
 };
+
+// Initialize isMarked from localStorage
+const markedBooks = JSON.parse(localStorage.getItem('markedBooks') || '[]');
+allBooks.forEach(book => {
+    if (markedBooks.includes(book.title)) {
+        book.isMarked = true;
+    }
+});
 
 function toggleMarkBook(bookTitle) {
     const book = allBooks.find(b => b.title === bookTitle);
     if (book) {
         book.isMarked = !book.isMarked;
+        
+        // Update localStorage
+        const currentMarked = JSON.parse(localStorage.getItem('markedBooks') || '[]');
+        if (book.isMarked) {
+            if (!currentMarked.includes(bookTitle)) {
+                currentMarked.push(bookTitle);
+            }
+        } else {
+            const index = currentMarked.indexOf(bookTitle);
+            if (index > -1) {
+                currentMarked.splice(index, 1);
+            }
+        }
+        localStorage.setItem('markedBooks', JSON.stringify(currentMarked));
+
         // Re-render trending section to show changes
         updateLibrary({});
     }
@@ -408,17 +419,19 @@ function updateLibrary(newState) {
     // If search or filter changes, reset to page 1
     if (newState.search !== undefined || newState.category !== undefined || 
         newState.year !== undefined || newState.language !== undefined ||
-        newState.education !== undefined || newState.grade !== undefined) {
+        newState.education !== undefined || newState.grade !== undefined ||
+        newState.showMarkedOnly !== undefined) {
         libraryState.page = 1;
     }
     
-    // Update filters if category changed
-    if (newState.category !== undefined && newState.category !== oldCategory) {
-        const filtersSection = document.getElementById('search-and-filters');
-        if (filtersSection) {
-            const newFiltersSection = SearchAndFilters();
-            filtersSection.replaceWith(newFiltersSection);
-        }
+    // Update filters if anything OTHER than search changed
+    // This prevents the search bar from losing focus while typing
+    const filtersSection = document.getElementById('search-and-filters');
+    const isOnlySearch = newState.search !== undefined && Object.keys(newState).length === 1;
+    
+    if (filtersSection && !isOnlySearch) {
+        const newFiltersSection = SearchAndFilters();
+        filtersSection.replaceWith(newFiltersSection);
     }
 
     const trendingSection = document.getElementById('trending-books');
@@ -445,6 +458,9 @@ function ListDisplayBook() {
                              book.author.toLowerCase().includes(libraryState.search.toLowerCase());
         const matchesCategory = libraryState.category === 'Category' || book.category === libraryState.category;
         
+        // Bookmark filter
+        const matchesMarked = !libraryState.showMarkedOnly || book.isMarked;
+        
         // Conditional filters based on category
         let matchesSecondaryFilters = true;
         if (libraryState.category === 'Educational') {
@@ -457,7 +473,7 @@ function ListDisplayBook() {
             matchesSecondaryFilters = matchesYear && matchesLanguage;
         }
         
-        return matchesSearch && matchesCategory && matchesSecondaryFilters;
+        return matchesSearch && matchesCategory && matchesSecondaryFilters && matchesMarked;
     });
 
     const itemsPerPage = 5;
@@ -472,7 +488,7 @@ function ListDisplayBook() {
     if (booksToShow.length === 0) {
         container.appendChild(createElement('div', {
             className: "text-gray-500 py-20 text-xl font-medium"
-        }, 'No books found matching your criteria.'));
+        }, libraryState.showMarkedOnly ? 'You haven\'t bookmarked any books yet.' : 'No books found matching your criteria.'));
         return container;
     }
 
@@ -492,6 +508,7 @@ function TrendingBooksSection() {
         const matchesSearch = book.title.toLowerCase().includes(libraryState.search.toLowerCase()) || 
                              book.author.toLowerCase().includes(libraryState.search.toLowerCase());
         const matchesCategory = libraryState.category === 'Category' || book.category === libraryState.category;
+        const matchesMarked = !libraryState.showMarkedOnly || book.isMarked;
         
         let matchesSecondaryFilters = true;
         if (libraryState.category === 'Educational') {
@@ -504,7 +521,7 @@ function TrendingBooksSection() {
             matchesSecondaryFilters = matchesYear && matchesLanguage;
         }
         
-        return matchesSearch && matchesCategory && matchesSecondaryFilters;
+        return matchesSearch && matchesCategory && matchesSecondaryFilters && matchesMarked;
     }).length;
     
     const totalPages = Math.ceil(filteredBooksCount / 5) || 1;
@@ -521,10 +538,10 @@ function TrendingBooksSection() {
             createElement('div', {},
                 createElement('h2', {
                     className: "font-extrabold text-3xl text-gray-900 tracking-tight"
-                }, (libraryState.search || libraryState.category !== 'Category' || libraryState.year !== 'Year' || libraryState.language !== 'Language' || libraryState.education !== 'Education' || libraryState.grade !== 'Grade') ? 'Search Results' : 'Trending Books'),
+                }, libraryState.showMarkedOnly ? 'My Bookmarks' : (libraryState.search || libraryState.category !== 'Category' || libraryState.year !== 'Year' || libraryState.language !== 'Language' || libraryState.education !== 'Education' || libraryState.grade !== 'Grade' ? 'Search Results' : 'Trending Books')),
                 createElement('p', {
                     className: "text-gray-500 text-sm mt-1"
-                }, 'The most popular titles in our library right now')
+                }, libraryState.showMarkedOnly ? 'Your saved books for quick access' : 'The most popular titles in our library right now')
             )
         ),
 
