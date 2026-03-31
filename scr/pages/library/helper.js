@@ -1,6 +1,12 @@
 function createElement(tag, attributes = {}, ...children) {
     const element = document.createElement(tag);
     
+    // If attributes is a string, treat it as className
+    if (typeof attributes === 'string') {
+        element.className = attributes;
+        attributes = {}; // Reset to empty object for the loop
+    }
+    
     // Set attributes
     for (const [key, value] of Object.entries(attributes)) {
         if (key === 'className') {
@@ -72,3 +78,62 @@ const images = {
     course: '../../assets/icons/course.png'
 
 };
+
+/**
+ * Creates a star rating component.
+ * @param {number} rating - Number of stars to display (default: 5)
+ * @returns {HTMLElement} The star rating container
+ */
+function createStarRating(rating = 5) {
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+        const isFilled = i < rating;
+        stars.push(
+            createElement('div', {
+                className: `relative shrink-0 size-5 ${isFilled ? 'opacity-100' : 'opacity-30'}`,
+                'data-name': 'Star'
+            }, createImage(images.star, '', 'absolute inset-0 max-w-none object-contain pointer-events-none size-full'))
+        );
+    }
+    return createElement('div', {
+        className: "flex gap-1 items-center",
+        'data-name': 'Star Rating'
+    }, ...stars);
+}
+
+/**
+ * Shows a modal popup with a 50% opacity background.
+ * @param {HTMLElement} content - The content to show in the modal
+ */
+function showModal(content) {
+    const overlay = createElement('div', {
+        className: "fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-4",
+        onclick: (e) => {
+            if (e.target === overlay) {
+                overlay.remove();
+                document.body.style.overflow = '';
+            }
+        }
+    });
+
+    const modalBody = createElement('div', {
+        className: "bg-white rounded-3xl w-full max-w-2xl max-h-[80vh] overflow-y-auto shadow-2xl relative animate-in fade-in zoom-in duration-300",
+        onclick: (e) => e.stopPropagation()
+    });
+
+    // Close Button
+    const closeBtn = createElement('button', {
+        className: "absolute top-4 right-6 text-gray-400 hover:text-gray-600 text-3xl font-bold z-10",
+        onclick: () => {
+            overlay.remove();
+            document.body.style.overflow = '';
+        }
+    }, '×');
+
+    modalBody.appendChild(closeBtn);
+    modalBody.appendChild(content);
+    overlay.appendChild(modalBody);
+
+    document.body.appendChild(overlay);
+    document.body.style.overflow = 'hidden';
+}
