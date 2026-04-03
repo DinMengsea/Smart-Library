@@ -1,24 +1,35 @@
-<!-- header.html -->
-
+<!-- navigationbar.html -->
 <header class="navmenu">
-      <div class="logobox">
-        <div class="logoimg">
-          <img src="../../assets/logo/ourlogo.png" alt="Logo">
+    <div class="nav-container">
+        <div class="logobox">
+            <div class="logoimg">
+                <img src="../../assets/logo/ourlogo.png" alt="Logo">
+            </div>
+            <div class="logotext">
+                <p>SMART LIBRARY</p>
+            </div>
         </div>
-        <div class="logotext">
-          <p>SMART LIBRARY</p>
-        </div>
-      </div>
-      
-      <div class="navmiddle">
-        <a href="../home/home.html" class="navlink">Home</a>
-        <a href="../library/library.html" class="navlink active">Library</a>
-        <a href="../courses/course.html" class="navlink">Courses</a>
-        <a href="../bookstore/bookstore.html" class="navlink">Book Store</a>
-      </div>
+        
+        <nav class="navmiddle" id="nav-links">
+            <a href="../home/home.html" class="navlink">Home</a>
+            <a href="../library/library.html" class="navlink active">Library</a>
+            <a href="../courses/course.html" class="navlink">Courses</a>
+            <a href="../bookstore/bookstore.html" class="navlink">Book Store</a>
+            <div class="navright mobile-only">
+                <button class="signup">Sign up</button>
+                <button class="login">Log in</button>
+            </div>
+        </nav>
 
-      <div class="navright">
-        <button class="signup">Sign up</button>
-        <button class="login">Log in</button>
-      </div>        
-    </header>
+        <div class="navright desktop-only">
+            <button class="signup">Sign up</button>
+            <button class="login">Log in</button>
+        </div>
+
+        <button class="hamburger" id="hamburger-menu" aria-label="Toggle navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </div>
+</header>

@@ -14,7 +14,7 @@ function FrameButton(book) {
       const modalContent = createElement('div', { className: "p-8 pt-12 flex flex-col items-center w-full" },
           createElement('h2', { className: "text-2xl font-bold text-gray-900 mb-8" }, "Select a Chapter"),
           createElement('div', { className: "w-full flex flex-col" },
-              ...createChapters()
+              ...createChapters(book)
           )
       );
       showModal(modalContent);
@@ -147,7 +147,7 @@ function BookDetailPage(book) {
     chaptersContainer.appendChild(createElement('h2', 'text-xl font-bold text-gray-900 px-2', 'Chapters'));
     
     const chaptersList = createElement('div', 'bg-white rounded-[24px] border border-gray-100 overflow-hidden shadow-sm');
-    createChapters().forEach(chapter => {
+    createChapters(book).forEach(chapter => {
         chaptersList.appendChild(chapter);
     });
     

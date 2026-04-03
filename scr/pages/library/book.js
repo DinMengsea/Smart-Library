@@ -5,17 +5,21 @@
  * @param {Function} onToggleMark - Callback when toggle is clicked
  * @returns {HTMLElement} The buttons container
  */
-function BookActions(isMarked = false, showViewCourse = false, onToggleMark) {
-    const buttonBaseClass = "flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md active:scale-95 text-sm font-medium border border-blue-100";
+function BookActions(isMarked = false, showViewCourse = false, onToggleMark, book) {
+    const buttonBaseClass = "flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md active:scale-95 text-xs sm:text-sm font-medium border border-blue-100";
     
     const container = createElement('div', {
-        className: "flex flex-wrap gap-4 mt-2",
+        className: "flex flex-wrap gap-2 sm:gap-4 mt-auto pt-4",
         'data-name': 'Book Actions'
     },
         // Start Reading Button
         createElement('button', {
             className: `${buttonBaseClass} bg-blue-50 text-blue-700 hover:bg-blue-100`,
-            type: 'button'
+            type: 'button',
+            onclick: (e) => {
+                e.stopPropagation();
+                navigateTo('detail', { book: allBooks.find(b => b.title === (typeof book === 'string' ? book : book.title)) || book });
+            }
         }, 'Start Reading')
     );
 
@@ -26,12 +30,11 @@ function BookActions(isMarked = false, showViewCourse = false, onToggleMark) {
                 className: `${buttonBaseClass} bg-indigo-50 text-indigo-700 border-indigo-100 hover:bg-indigo-100`,
                 type: 'button',
                 onclick: () => {
-                    // Navigate to course page or show course info
                     console.log('View Course clicked');
                 }
             }, 
                 createElement('div', {
-                    className: 'size-4',
+                    className: 'size-3 sm:size-4',
                     'data-name': 'Course Icon'
                 }, createImage(images.course, '', 'object-contain size-full')),
                 'View Course'
@@ -47,10 +50,10 @@ function BookActions(isMarked = false, showViewCourse = false, onToggleMark) {
             onclick: onToggleMark
         }, 
             createElement('div', {
-                className: 'size-4',
+                className: 'size-3 sm:size-4',
                 'data-name': 'Mark Icon'
             }, createImage(isMarked ? images.check : images.bookmark, '', 'object-contain size-full')),
-            isMarked ? 'Book Marked' : 'Mark Book'
+            isMarked ? (window.innerWidth < 640 ? 'Marked' : 'Book Marked') : (window.innerWidth < 640 ? 'Mark' : 'Mark Book')
         )
     );
 
@@ -64,17 +67,16 @@ function BookActions(isMarked = false, showViewCourse = false, onToggleMark) {
  */
 function BookDisplay(book) {
     const { title, author, description, image, rating, isMarked, category } = book;
-    // Process description to handle "Read more ..."
     const shortDesc = description.replace('Read more ...', '');
     
     return createElement('div', {
-        className: "bg-white flex flex-col sm:flex-row gap-6 p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 w-full max-w-4xl cursor-pointer",
+        className: "bg-white flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 w-full max-w-4xl cursor-pointer",
         'data-name': 'Book Card',
         onclick: () => navigateTo('detail', { book })
     },
         // Book Cover Container
         createElement('div', {
-            className: 'w-full sm:w-36 h-52 shrink-0 bg-gray-100 rounded-lg overflow-hidden shadow-md'
+            className: 'w-32 sm:w-36 h-48 sm:h-52 shrink-0 bg-gray-100 rounded-xl overflow-hidden shadow-md mx-auto sm:mx-0'
         }, createImage(image, title, 'h-full w-full object-cover')),
 
         // Book Details Container
@@ -84,37 +86,37 @@ function BookDisplay(book) {
         },
             // Header: Title, Author, Rating
             createElement('div', {
-                className: "flex flex-col md:flex-row justify-between items-start gap-4 mb-3"
+                className: "flex flex-col md:flex-row justify-between items-start gap-2 sm:gap-4 mb-3"
             },
                 createElement('div', {
-                    className: "flex flex-col gap-1"
+                    className: "flex flex-col gap-0.5 sm:gap-1"
                 },
                     createElement('h3', {
-                        className: "font-bold text-xl text-gray-900 leading-tight"
+                        className: "font-bold text-lg sm:text-xl text-gray-900 leading-tight"
                     }, title),
                     createElement('p', {
-                        className: "font-medium text-sm text-blue-600"
+                        className: "font-medium text-xs sm:text-sm text-blue-600"
                     }, author)
                 ),
                 createElement('div', {
-                    className: "flex flex-col items-start md:items-end gap-1"
+                    className: "flex flex-row md:flex-col items-center md:items-end gap-2 md:gap-1"
                 },
                     createStarRating(rating),
                     createElement('span', {
-                        className: "text-[10px] font-bold uppercase tracking-wider text-gray-400"
+                        className: "text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-gray-400"
                     }, 'Member Review')
                 )
             ),
 
             // Description
             createElement('div', {
-                className: "mb-4"
+                className: "mb-auto"
             },
                 createElement('p', {
-                    className: "text-sm text-gray-600 leading-relaxed line-clamp-3"
+                    className: "text-xs sm:text-sm text-gray-600 leading-relaxed line-clamp-2 sm:line-clamp-3"
                 }, shortDesc),
                 createElement('button', {
-                    className: "text-blue-500 hover:text-blue-700 text-xs font-semibold mt-1 transition-colors underline-offset-4 hover:underline",
+                    className: "text-blue-500 hover:text-blue-700 text-[10px] sm:text-xs font-semibold mt-1 transition-colors underline-offset-4 hover:underline",
                     type: 'button',
                     onclick: (e) => {
                         e.stopPropagation();
@@ -129,7 +131,7 @@ function BookDisplay(book) {
             }, 
                 BookActions(isMarked, category === 'Educational', () => {
                     toggleMarkBook(title);
-                })
+                }, book)
             )
         )
     );

@@ -27,9 +27,10 @@ function createChapterHeader(chapterNum, unitRange) {
 /**
  * Creates a simple, clean row for a unit.
  */
-function createUnitRow(unitNum, description) {
+function createUnitRow(unitNum, description, book, chapter) {
   const container = createElement('div', {
-    className: "group flex items-center justify-between px-8 py-5 hover:bg-gray-50 transition-colors cursor-pointer border-b border-gray-50 last:border-0"
+    className: "group flex items-center justify-between px-8 py-5 hover:bg-gray-50 transition-colors cursor-pointer border-b border-gray-50 last:border-0",
+    onclick: () => navigateTo('bookpage', { book, chapter, unit: { num: unitNum, desc: description } })
   });
   
   const leftContent = createElement('div', { className: "flex items-center gap-6" },
@@ -52,14 +53,14 @@ function createUnitRow(unitNum, description) {
 /**
  * Creates a chapter section with its units.
  */
-function createChapterSection(chapterNum, unitRange, units) {
+function createChapterSection(chapterNum, unitRange, units, book) {
   const container = createElement('div', 'flex flex-col w-full');
   
   container.appendChild(createChapterHeader(chapterNum, unitRange));
   
   const unitsContainer = createElement('div', { className: "flex flex-col bg-white" });
   units.forEach(unit => {
-    unitsContainer.appendChild(createUnitRow(unit.num, unit.desc));
+    unitsContainer.appendChild(createUnitRow(unit.num, unit.desc, book, { num: chapterNum, range: unitRange }));
   });
   
   container.appendChild(unitsContainer);
@@ -98,14 +99,14 @@ const chaptersData = [
 /**
  * Main function to generate the chapters list.
  */
-function createChapters() {
+function createChapters(book) {
   const chapters = [];
   
   chaptersData.forEach(chapter => {
     const chapterContainer = createElement('div', {
         className: "w-full overflow-hidden"
     });
-    chapterContainer.appendChild(createChapterSection(chapter.num, chapter.range, chapter.units));
+    chapterContainer.appendChild(createChapterSection(chapter.num, chapter.range, chapter.units, book));
     chapters.push(chapterContainer);
   });
   
