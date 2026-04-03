@@ -19,49 +19,41 @@ function BookPage(book, chapter = null, unit = null) {
     ];
 
     const container = createElement('div', {
-        className: "fixed inset-0 z-[100] flex flex-col overflow-hidden",
+        className: "reader-container",
         style: { backgroundColor: '#0F092C' },
         'data-name': 'Book Reader'
     });
 
-    // Add CSS to hide scrollbar
-    const style = document.createElement('style');
-    style.textContent = `
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    `;
-    document.head.appendChild(style);
-
     // --- HEADER ---
     const header = createElement('header', {
-        className: "h-16 flex items-center justify-between px-6 border-b border-white/10 z-20 shrink-0",
+        className: "reader-header",
         style: { backgroundColor: '#0F092C' }
     });
 
     const backBtn = createElement('button', {
-        className: "flex items-center gap-2 text-gray-400 hover:text-white transition-all font-bold group",
+        className: "reader-back-btn",
         onclick: () => navigateTo('detail', { book })
     }, 
-        createElement('div', { className: "size-6 flex items-center justify-center group-hover:-translate-x-1 transition-transform invert brightness-200" }, 
-            createImage('../../assets/icons/back.png', 'Back', 'object-contain size-full')
+        createElement('div', { className: "reader-back-icon-wrapper" }, 
+            createImage('../../assets/icons/back.png', 'Back', 'reader-back-icon')
         ),
         createElement('span', { className: "hidden sm:inline" }, 'Back')
     );
 
-    const bookTitleInfo = createElement('div', { className: "flex flex-col items-center" },
-        createElement('h2', { className: "font-bold text-white text-sm sm:text-base leading-tight text-center" }, book.title),
-        createElement('p', { className: "text-[10px] text-blue-400 font-bold uppercase tracking-widest" }, 
+    const bookTitleInfo = createElement('div', { className: "reader-title-group" },
+        createElement('h2', { className: "reader-title" }, book.title),
+        createElement('p', { className: "reader-subtitle" }, 
             unit ? `Chapter ${chapter?.num || 1} • Unit ${unit.num}` : 'Full Book'
         )
     );
 
-    const actionButtons = createElement('div', { className: "flex items-center gap-4" },
+    const actionButtons = createElement('div', { className: "reader-actions" },
         createElement('button', {
-            className: "p-2 hover:bg-white/10 rounded-full transition-colors",
+            className: "reader-action-btn",
             onclick: () => toggleMarkBook(book.title)
-        }, createImage(book.isMarked ? '../../assets/icons/check.png' : '../../assets/icons/bookmark.png', 'Bookmark', 'size-5 opacity-70 invert brightness-200')),
+        }, createImage(book.isMarked ? '../../assets/icons/check.png' : '../../assets/icons/bookmark.png', 'Bookmark', 'reader-action-icon')),
         createElement('button', {
-            className: "hidden sm:flex p-2 hover:bg-white/10 rounded-full transition-colors",
+            className: "hidden sm:flex reader-action-btn",
             onclick: () => {
                 if (document.fullscreenElement) {
                     document.exitFullscreen();
@@ -78,7 +70,7 @@ function BookPage(book, chapter = null, unit = null) {
 
     // --- SCROLLABLE CONTENT AREA ---
     const scrollContainer = createElement('div', {
-        className: "flex-grow flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar",
+        className: "reader-scroller no-scrollbar",
         'data-name': 'Page Scroller'
     });
 
@@ -91,35 +83,35 @@ function BookPage(book, chapter = null, unit = null) {
 
     pageImages.forEach((src, index) => {
         const pageWrapper = createElement('div', {
-            className: "min-w-full h-full flex items-center justify-center snap-center p-4 sm:p-10"
+            className: "reader-page-wrapper"
         }, 
             createElement('div', {
-                className: "relative h-full max-w-full aspect-[1/1.414] bg-white shadow-2xl rounded-lg overflow-hidden border border-white/5"
-            }, createImage(src, `Page ${index + 1}`, 'h-full w-full object-contain pointer-events-none'))
+                className: "reader-page-content"
+            }, createImage(src, `Page ${index + 1}`, 'reader-page-img'))
         );
         scrollContainer.appendChild(pageWrapper);
     });
 
     // --- NAVIGATION OVERLAYS ---
-    const navOverlay = createElement('div', { className: "absolute inset-0 pointer-events-none flex justify-between items-center px-4 sm:px-12 z-10" });
+    const navOverlay = createElement('div', { className: "reader-nav-overlay" });
     
     const prevBtn = createElement('button', {
-        className: "pointer-events-auto p-4 bg-white/10 backdrop-blur shadow-2xl rounded-full hover:bg-blue-600 hover:text-white transition-all group opacity-0 translate-x-4",
-        style: { transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)' },
+        className: "reader-nav-btn",
+        style: { transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)', opacity: '0', transform: 'translateX(1rem)', pointerEvents: 'none' },
         onclick: () => {
             const width = scrollContainer.offsetWidth;
             scrollContainer.scrollLeft -= width;
         }
-    }, createImage('../../assets/icons/previous.png', 'Previous', 'size-8 invert brightness-200 transition-all'));
+    }, createImage('../../assets/icons/previous.png', 'Previous', 'reader-nav-icon'));
 
     const nextBtn = createElement('button', {
-        className: "pointer-events-auto p-4 bg-white/10 backdrop-blur shadow-2xl rounded-full hover:bg-blue-600 hover:text-white transition-all group",
+        className: "reader-nav-btn",
         style: { transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)' },
         onclick: () => {
             const width = scrollContainer.offsetWidth;
             scrollContainer.scrollLeft += width;
         }
-    }, createImage('../../assets/icons/next.png', 'Next', 'size-8 invert brightness-200 transition-all'));
+    }, createImage('../../assets/icons/next.png', 'Next', 'reader-nav-icon'));
 
     navOverlay.appendChild(prevBtn);
     navOverlay.appendChild(nextBtn);
@@ -133,14 +125,14 @@ function BookPage(book, chapter = null, unit = null) {
 
     // --- FOOTER / PROGRESS ---
     const footer = createElement('footer', {
-        className: "h-16 flex items-center justify-between px-8 border-t border-white/10 z-20 shrink-0",
+        className: "reader-footer",
         style: { backgroundColor: '#0F092C' }
     });
 
-    const pageIndicator = createElement('span', { className: "text-sm font-bold text-gray-400 min-w-[120px]" }, `Page 1 / ${pageImages.length}`);
+    const pageIndicator = createElement('span', { className: "reader-page-indicator" }, `Page 1 / ${pageImages.length}`);
     
     const progressBg = createElement('div', { 
-        className: "flex-grow max-w-2xl mx-auto h-2 bg-white/10 rounded-full overflow-hidden relative cursor-pointer",
+        className: "reader-progress-container",
         onclick: (e) => {
             const rect = e.currentTarget.getBoundingClientRect();
             const percent = (e.clientX - rect.left) / rect.width;
@@ -150,7 +142,7 @@ function BookPage(book, chapter = null, unit = null) {
         }
     });
     const progressBar = createElement('div', { 
-        className: "absolute top-0 left-0 h-full bg-blue-500 transition-all duration-300 rounded-full",
+        className: "reader-progress-bar",
         style: { width: `${(1 / pageImages.length) * 100}%` }
     });
     progressBg.appendChild(progressBar);

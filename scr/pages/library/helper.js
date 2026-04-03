@@ -90,13 +90,13 @@ function createStarRating(rating = 5) {
         const isFilled = i < rating;
         stars.push(
             createElement('div', {
-                className: `relative shrink-0 size-5 ${isFilled ? 'opacity-100' : 'opacity-30'}`,
+                className: `star-icon-wrapper ${isFilled ? 'opacity-100' : 'opacity-30'}`,
                 'data-name': 'Star'
-            }, createImage(images.star, '', 'absolute inset-0 max-w-none object-contain pointer-events-none size-full'))
+            }, createImage(images.star, '', 'star-icon'))
         );
     }
     return createElement('div', {
-        className: "flex gap-1 items-center",
+        className: "star-rating-container",
         'data-name': 'Star Rating'
     }, ...stars);
 }
@@ -107,7 +107,7 @@ function createStarRating(rating = 5) {
  */
 function showModal(content) {
     const overlay = createElement('div', {
-        className: "fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-4",
+        className: "modal-overlay",
         onclick: (e) => {
             if (e.target === overlay) {
                 overlay.remove();
@@ -117,13 +117,13 @@ function showModal(content) {
     });
 
     const modalBody = createElement('div', {
-        className: "bg-white rounded-3xl w-full max-w-2xl max-h-[80vh] overflow-y-auto shadow-2xl relative animate-in fade-in zoom-in duration-300",
+        className: "modal-body",
         onclick: (e) => e.stopPropagation()
     });
 
     // Close Button
     const closeBtn = createElement('button', {
-        className: "absolute top-4 right-6 text-gray-400 hover:text-gray-600 text-3xl font-bold z-10",
+        className: "modal-close",
         onclick: () => {
             overlay.remove();
             document.body.style.overflow = '';
