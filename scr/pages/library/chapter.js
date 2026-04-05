@@ -5,16 +5,16 @@ function createChapterHeader(chapterNum, unitRange) {
   const container = createElement('div', 'w-full');
   
   const content = createElement('div', {
-    className: "flex items-center justify-between px-6 py-4 bg-gray-50 border-y border-gray-100"
+    className: "chapter-header"
   });
   
-  const leftSide = createElement('div', { className: "flex items-center gap-3" },
-    createElement('span', { className: "text-blue-600 font-bold" }, chapterNum + "."),
-    createElement('p', { className: "font-bold text-gray-900 text-lg" }, `Chapter ${chapterNum}`)
+  const leftSide = createElement('div', { className: "chapter-title-group" },
+    createElement('span', { className: "chapter-num" }, chapterNum + "."),
+    createElement('p', { className: "chapter-title" }, `Chapter ${chapterNum}`)
   );
   
   const rightSide = createElement('p', { 
-    className: "text-xs font-bold text-gray-400 uppercase tracking-widest" 
+    className: "chapter-range" 
   }, unitRange);
   
   content.appendChild(leftSide);
@@ -27,20 +27,21 @@ function createChapterHeader(chapterNum, unitRange) {
 /**
  * Creates a simple, clean row for a unit.
  */
-function createUnitRow(unitNum, description) {
+function createUnitRow(unitNum, description, book, chapter) {
   const container = createElement('div', {
-    className: "group flex items-center justify-between px-8 py-5 hover:bg-gray-50 transition-colors cursor-pointer border-b border-gray-50 last:border-0"
+    className: "unit-row",
+    onclick: () => navigateTo('bookpage', { book, chapter, unit: { num: unitNum, desc: description } })
   });
   
-  const leftContent = createElement('div', { className: "flex items-center gap-6" },
-    createElement('span', { className: "text-gray-300 font-bold text-sm w-4" }, unitNum),
+  const leftContent = createElement('div', { className: "unit-left" },
+    createElement('span', { className: "unit-num" }, unitNum),
     createElement('p', { 
-        className: "text-gray-700 group-hover:text-blue-600 font-medium transition-colors" 
+        className: "unit-desc" 
     }, description)
   );
 
   const arrow = createElement('span', { 
-    className: "text-gray-300 group-hover:text-blue-400 group-hover:translate-x-1 transition-all" 
+    className: "unit-arrow" 
   }, "→");
   
   container.appendChild(leftContent);
@@ -52,14 +53,14 @@ function createUnitRow(unitNum, description) {
 /**
  * Creates a chapter section with its units.
  */
-function createChapterSection(chapterNum, unitRange, units) {
+function createChapterSection(chapterNum, unitRange, units, book) {
   const container = createElement('div', 'flex flex-col w-full');
   
   container.appendChild(createChapterHeader(chapterNum, unitRange));
   
   const unitsContainer = createElement('div', { className: "flex flex-col bg-white" });
   units.forEach(unit => {
-    unitsContainer.appendChild(createUnitRow(unit.num, unit.desc));
+    unitsContainer.appendChild(createUnitRow(unit.num, unit.desc, book, { num: chapterNum, range: unitRange }));
   });
   
   container.appendChild(unitsContainer);
@@ -98,14 +99,14 @@ const chaptersData = [
 /**
  * Main function to generate the chapters list.
  */
-function createChapters() {
+function createChapters(book) {
   const chapters = [];
   
   chaptersData.forEach(chapter => {
     const chapterContainer = createElement('div', {
         className: "w-full overflow-hidden"
     });
-    chapterContainer.appendChild(createChapterSection(chapter.num, chapter.range, chapter.units));
+    chapterContainer.appendChild(createChapterSection(chapter.num, chapter.range, chapter.units, book));
     chapters.push(chapterContainer);
   });
   

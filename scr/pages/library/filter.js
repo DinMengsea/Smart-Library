@@ -1,54 +1,51 @@
 function SearchBar() {
     return createElement('div', {
-        className: "bg-white h-14 relative rounded-2xl w-full max-w-3xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md",
+        className: "search-bar-container",
         'data-name': 'search bar'
     },
         createElement('div', {
-            className: 'flex flex-row items-center size-full px-6'
+            className: 'search-bar-content'
         },
             createElement('div', {
-                className: 'relative flex-grow',
+                className: 'search-icon-wrapper',
+                'data-name': 'SearchIcon'
+            }, createImage(images.search, '', 'h-full w-full object-contain')),
+            createElement('div', {
+                className: 'search-input-wrapper',
                 'data-name': 'Search'
             },
                 createElement('input', {
                     type: 'text',
                     placeholder: 'Search for books...',
-                    className: "font-medium text-lg text-gray-700 outline-none w-full bg-transparent placeholder-gray-400",
+                    className: "search-input",
                     value: libraryState.search,
                     oninput: (e) => {
                         updateLibrary({ search: e.target.value });
                     }
                 })
-            ),
-            createElement('div', {
-                className: 'h-6 w-6 opacity-40 shrink-0 ml-2',
-                'data-name': 'SearchIcon'
-            }, createImage(images.search, '', 'h-full w-full object-contain'))
+            )
         )
     );
 }
 
 function Dropdown(label, options = [], currentStateKey) {
-    // State-like variables using the element itself
     let isOpen = false;
     const currentVal = libraryState[currentStateKey] !== label ? libraryState[currentStateKey] : label;
 
     const labelText = createElement('p', {
-        className: "flex-grow font-medium text-base text-gray-700 truncate"
+        className: "flex-grow font-semibold text-xs sm:text-sm text-gray-600 truncate"
     }, currentVal);
 
     const optionsList = createElement('div', {
-        className: "absolute top-full left-0 right-0 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl overflow-hidden hidden z-50 transition-all transform origin-top scale-95 opacity-0",
+        className: "dropdown-options hidden",
         style: "transition: all 0.2s ease-out;"
     });
 
-    // Add "All" option to reset filter
     const allOptions = [label, ...options];
 
-    // Create option items
     allOptions.forEach(opt => {
         const item = createElement('div', {
-            className: "px-5 py-3 hover:bg-indigo-50 cursor-pointer text-gray-600 hover:text-indigo-600 transition-colors text-sm font-medium border-b border-gray-50 last:border-none",
+            className: "dropdown-option",
             onclick: (e) => {
                 e.stopPropagation();
                 labelText.textContent = opt;
@@ -64,11 +61,12 @@ function Dropdown(label, options = [], currentStateKey) {
     const toggleDropdown = () => {
         isOpen = !isOpen;
         if (isOpen) {
-            optionsList.classList.remove('hidden', 'scale-95', 'opacity-0');
-            optionsList.classList.add('scale-100', 'opacity-100');
+            optionsList.classList.remove('hidden', 'hide');
+            optionsList.classList.add('show');
             chevron.style.transform = "rotate(180deg)";
         } else {
-            optionsList.classList.add('scale-95', 'opacity-0');
+            optionsList.classList.remove('show');
+            optionsList.classList.add('hide');
             chevron.style.transform = "rotate(0deg)";
             setTimeout(() => {
                 if (!isOpen) optionsList.classList.add('hidden');
@@ -77,13 +75,12 @@ function Dropdown(label, options = [], currentStateKey) {
     };
 
     const chevron = createElement('div', {
-        className: 'shrink-0 size-4 opacity-50 transition-transform duration-300',
-        'data-name': 'Chevron Down',
+        className: 'dropdown-chevron',
         style: "transition: transform 0.3s ease;"
     }, createImage(images.chevronDown, '', 'h-full w-full object-contain'));
 
     const dropdownBar = createElement('div', {
-        className: "bg-white flex-grow h-14 relative border border-gray-200 rounded-2xl px-5 flex items-center justify-between shadow-sm cursor-pointer hover:border-indigo-300 transition-all",
+        className: "dropdown-bar",
         onclick: toggleDropdown
     },
         labelText,
@@ -91,7 +88,6 @@ function Dropdown(label, options = [], currentStateKey) {
         optionsList
     );
 
-    // Close when clicking outside
     document.addEventListener('click', (e) => {
         if (!dropdownBar.contains(e.target) && isOpen) {
             toggleDropdown();
@@ -99,29 +95,21 @@ function Dropdown(label, options = [], currentStateKey) {
     });
 
     return createElement('div', {
-        className: "flex items-start shrink-0 w-52 relative"
+        className: "dropdown-container"
     }, dropdownBar);
 }
 
 function mybook() {
     const isActive = libraryState.showMarkedOnly;
     return createElement('div', {
-        className: `flex flex-col items-center justify-center h-14 px-4 shrink-0 cursor-pointer group ${isActive ? 'bg-indigo-50 rounded-2xl' : ''}`,
+        className: `filter-btn ${isActive ? 'filter-btn-active' : 'filter-btn-inactive'}`,
         onclick: () => {
             updateLibrary({ showMarkedOnly: !libraryState.showMarkedOnly });
         }
     },
-        createElement('div', {
-            className: 'relative',
-            'data-name': 'My_book'
-        },
-            createElement('p', {
-                className: `font-semibold text-lg ${isActive ? 'text-indigo-800' : 'text-indigo-600'} whitespace-nowrap group-hover:text-indigo-800 transition-colors`
-            }, 'My Book')
-        ),
-        createElement('div', {
-            className: `h-0.5 ${isActive ? 'w-full' : 'w-0'} bg-indigo-600 group-hover:w-full transition-all duration-300 rounded-full`
-        })
+        createElement('p', {
+            className: `font-bold text-xs sm:text-sm ${isActive ? 'text-white' : 'text-indigo-600'} whitespace-nowrap`
+        }, 'My Bookmarks')
     );
 }
 
@@ -130,35 +118,36 @@ function SearchAndFilters() {
     const years = ['2024', '2023', '2022', '2021', '2020', 'Earlier'];
     const languages = ['English', 'Khmer', 'French', 'Chinese'];
     
-    // New options for Educational category
     const educations = ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'History', 'Geography', 'Khmer Literature', 'Economics', 'Social Studies'];
     const grades = ['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', 'Grade 6', 'Grade 7', 'Grade 8', 'Grade 9', 'Grade 10', 'Grade 11', 'Grade 12', 'University'];
 
-    const filterBox = createElement('div', {
-        className: "flex flex-wrap gap-5 items-center justify-center w-full",
-        'data-name': 'filter box'
+    const filterGrid = createElement('div', {
+        className: "filter-grid",
+        'data-name': 'filter grid'
     });
 
-    // Category Dropdown
-    filterBox.appendChild(Dropdown('Category', categories, 'category'));
+    // Category
+    filterGrid.appendChild(Dropdown('Category', categories, 'category'));
 
-    // Conditional Dropdowns
     if (libraryState.category === 'Educational') {
-        filterBox.appendChild(Dropdown('Education', educations, 'education'));
-        filterBox.appendChild(Dropdown('Grade', grades, 'grade'));
+        filterGrid.appendChild(Dropdown('Education', educations, 'education'));
+        filterGrid.appendChild(Dropdown('Grade', grades, 'grade'));
     } else {
-        filterBox.appendChild(Dropdown('Year', years, 'year'));
-        filterBox.appendChild(Dropdown('Language', languages, 'language'));
+        filterGrid.appendChild(Dropdown('Year', years, 'year'));
+        filterGrid.appendChild(Dropdown('Language', languages, 'language'));
     }
 
-    filterBox.appendChild(mybook());
+    // My Bookmarks button
+    const myBookWrapper = createElement('div', { 
+        className: "col-span-2 lg:col-span-1 lg:w-48 xl:w-56" 
+    }, mybook());
+    filterGrid.appendChild(myBookWrapper);
 
     return createElement('div', {
-        className: "mx-auto w-full max-w-6xl flex flex-col items-center py-10 px-4 gap-8",
-        'data-name': 'combine search filter',
+        className: "filter-section",
         'id': 'search-and-filters'
     },
         SearchBar(),
-        filterBox
+        filterGrid
     );
 }

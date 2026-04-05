@@ -5,17 +5,21 @@
  * @param {Function} onToggleMark - Callback when toggle is clicked
  * @returns {HTMLElement} The buttons container
  */
-function BookActions(isMarked = false, showViewCourse = false, onToggleMark) {
-    const buttonBaseClass = "flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md active:scale-95 text-sm font-medium border border-blue-100";
+function BookActions(isMarked = false, showViewCourse = false, onToggleMark, book) {
+    const buttonBaseClass = "book-action-btn";
     
     const container = createElement('div', {
-        className: "flex flex-wrap gap-4 mt-2",
+        className: "book-actions-container",
         'data-name': 'Book Actions'
     },
         // Start Reading Button
         createElement('button', {
-            className: `${buttonBaseClass} bg-blue-50 text-blue-700 hover:bg-blue-100`,
-            type: 'button'
+            className: `${buttonBaseClass} btn-start-reading`,
+            type: 'button',
+            onclick: (e) => {
+                e.stopPropagation();
+                navigateTo('detail', { book: allBooks.find(b => b.title === (typeof book === 'string' ? book : book.title)) || book });
+            }
         }, 'Start Reading')
     );
 
@@ -23,17 +27,16 @@ function BookActions(isMarked = false, showViewCourse = false, onToggleMark) {
     if (showViewCourse) {
         container.appendChild(
             createElement('button', {
-                className: `${buttonBaseClass} bg-indigo-50 text-indigo-700 border-indigo-100 hover:bg-indigo-100`,
+                className: `${buttonBaseClass} btn-view-course`,
                 type: 'button',
                 onclick: () => {
-                    // Navigate to course page or show course info
                     console.log('View Course clicked');
                 }
             }, 
                 createElement('div', {
-                    className: 'size-4',
+                    className: 'book-action-icon-wrapper',
                     'data-name': 'Course Icon'
-                }, createImage(images.course, '', 'object-contain size-full')),
+                }, createImage(images.course, '', 'book-action-icon')),
                 'View Course'
             )
         );
@@ -42,15 +45,15 @@ function BookActions(isMarked = false, showViewCourse = false, onToggleMark) {
     // Mark Book Button
     container.appendChild(
         createElement('button', {
-            className: `${buttonBaseClass} ${isMarked ? 'bg-green-50 text-green-700 border-green-100' : 'bg-white text-gray-700 hover:bg-gray-50'}`,
+            className: `${buttonBaseClass} ${isMarked ? 'btn-marked' : 'btn-mark'}`,
             type: 'button',
             onclick: onToggleMark
         }, 
             createElement('div', {
-                className: 'size-4',
+                className: 'book-action-icon-wrapper',
                 'data-name': 'Mark Icon'
-            }, createImage(isMarked ? images.check : images.bookmark, '', 'object-contain size-full')),
-            isMarked ? 'Book Marked' : 'Mark Book'
+            }, createImage(isMarked ? images.check : images.bookmark, '', 'book-action-icon')),
+            isMarked ? (window.innerWidth < 640 ? 'Marked' : 'Book Marked') : (window.innerWidth < 640 ? 'Mark' : 'Mark Book')
         )
     );
 
@@ -64,57 +67,56 @@ function BookActions(isMarked = false, showViewCourse = false, onToggleMark) {
  */
 function BookDisplay(book) {
     const { title, author, description, image, rating, isMarked, category } = book;
-    // Process description to handle "Read more ..."
     const shortDesc = description.replace('Read more ...', '');
     
     return createElement('div', {
-        className: "bg-white flex flex-col sm:flex-row gap-6 p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 w-full max-w-4xl cursor-pointer",
+        className: "book-card",
         'data-name': 'Book Card',
         onclick: () => navigateTo('detail', { book })
     },
         // Book Cover Container
         createElement('div', {
-            className: 'w-full sm:w-36 h-52 shrink-0 bg-gray-100 rounded-lg overflow-hidden shadow-md'
-        }, createImage(image, title, 'h-full w-full object-cover')),
+            className: 'book-cover-container'
+        }, createImage(image, title, 'book-cover-img')),
 
         // Book Details Container
         createElement('div', {
-            className: "flex flex-col flex-grow w-full",
+            className: "book-details-container",
             'data-name': 'Book Details'
         },
             // Header: Title, Author, Rating
             createElement('div', {
-                className: "flex flex-col md:flex-row justify-between items-start gap-4 mb-3"
+                className: "book-header"
             },
                 createElement('div', {
-                    className: "flex flex-col gap-1"
+                    className: "book-title-group"
                 },
                     createElement('h3', {
-                        className: "font-bold text-xl text-gray-900 leading-tight"
+                        className: "book-title"
                     }, title),
                     createElement('p', {
-                        className: "font-medium text-sm text-blue-600"
+                        className: "book-author"
                     }, author)
                 ),
                 createElement('div', {
-                    className: "flex flex-col items-start md:items-end gap-1"
+                    className: "book-rating-group"
                 },
                     createStarRating(rating),
                     createElement('span', {
-                        className: "text-[10px] font-bold uppercase tracking-wider text-gray-400"
+                        className: "book-review-label"
                     }, 'Member Review')
                 )
             ),
 
             // Description
             createElement('div', {
-                className: "mb-4"
+                className: "book-description-container"
             },
                 createElement('p', {
-                    className: "text-sm text-gray-600 leading-relaxed line-clamp-3"
+                    className: "book-description-text"
                 }, shortDesc),
                 createElement('button', {
-                    className: "text-blue-500 hover:text-blue-700 text-xs font-semibold mt-1 transition-colors underline-offset-4 hover:underline",
+                    className: "book-read-more",
                     type: 'button',
                     onclick: (e) => {
                         e.stopPropagation();
@@ -129,7 +131,7 @@ function BookDisplay(book) {
             }, 
                 BookActions(isMarked, category === 'Educational', () => {
                     toggleMarkBook(title);
-                })
+                }, book)
             )
         )
     );
@@ -464,8 +466,10 @@ function ListDisplayBook() {
         // Conditional filters based on category
         let matchesSecondaryFilters = true;
         if (libraryState.category === 'Educational') {
-            const matchesEducation = libraryState.education === 'Education' || book.education === libraryState.education;
-            const matchesGrade = libraryState.grade === 'Grade' || book.grade === libraryState.grade;
+            const matchesEducation = libraryState.education === 'Education' || 
+                                   (book.education && book.education.toLowerCase() === libraryState.education.toLowerCase());
+            const matchesGrade = libraryState.grade === 'Grade' || 
+                               (book.grade && book.grade.toLowerCase() === libraryState.grade.toLowerCase());
             matchesSecondaryFilters = matchesEducation && matchesGrade;
         } else {
             const matchesYear = libraryState.year === 'Year' || book.year === libraryState.year;
@@ -481,13 +485,13 @@ function ListDisplayBook() {
     const booksToShow = filteredBooks.slice(startIndex, startIndex + itemsPerPage);
 
     const container = createElement('div', {
-        className: "flex flex-col gap-10 items-center w-full py-4",
+        className: "books-list-container",
         'data-name': 'Books List'
     });
 
     if (booksToShow.length === 0) {
         container.appendChild(createElement('div', {
-            className: "text-gray-500 py-20 text-xl font-medium"
+            className: "books-empty-state"
         }, libraryState.showMarkedOnly ? 'You haven\'t bookmarked any books yet.' : 'No books found matching your criteria.'));
         return container;
     }
@@ -512,8 +516,10 @@ function TrendingBooksSection() {
         
         let matchesSecondaryFilters = true;
         if (libraryState.category === 'Educational') {
-            const matchesEducation = libraryState.education === 'Education' || book.education === libraryState.education;
-            const matchesGrade = libraryState.grade === 'Grade' || book.grade === libraryState.grade;
+            const matchesEducation = libraryState.education === 'Education' || 
+                                   (book.education && book.education.toLowerCase() === libraryState.education.toLowerCase());
+            const matchesGrade = libraryState.grade === 'Grade' || 
+                               (book.grade && book.grade.toLowerCase() === libraryState.grade.toLowerCase());
             matchesSecondaryFilters = matchesEducation && matchesGrade;
         } else {
             const matchesYear = libraryState.year === 'Year' || book.year === libraryState.year;
@@ -527,20 +533,20 @@ function TrendingBooksSection() {
     const totalPages = Math.ceil(filteredBooksCount / 5) || 1;
 
     const section = createElement('section', {
-        className: "mx-auto w-full max-w-6xl flex flex-col gap-8 items-center px-6 py-12",
+        className: "trending-section",
         'id': 'trending-books'
     },
         // Header Section
         createElement('div', {
-            className: "w-full max-w-4xl flex justify-between items-end border-b border-gray-100 pb-4",
+            className: "trending-header",
             'data-name': 'Section Header'
         },
             createElement('div', {},
                 createElement('h2', {
-                    className: "font-extrabold text-3xl text-gray-900 tracking-tight"
+                    className: "trending-title"
                 }, libraryState.showMarkedOnly ? 'My Bookmarks' : (libraryState.search || libraryState.category !== 'Category' || libraryState.year !== 'Year' || libraryState.language !== 'Language' || libraryState.education !== 'Education' || libraryState.grade !== 'Grade' ? 'Search Results' : 'Trending Books')),
                 createElement('p', {
-                    className: "text-gray-500 text-sm mt-1"
+                    className: "trending-subtitle"
                 }, libraryState.showMarkedOnly ? 'Your saved books for quick access' : 'The most popular titles in our library right now')
             )
         ),

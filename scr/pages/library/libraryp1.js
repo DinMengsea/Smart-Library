@@ -1,12 +1,12 @@
 function LibraryPage1() {
     const container = createElement('div', {
-        className: "min-h-screen flex flex-col bg-[#f0effb]",
+        className: "library-page-container",
         'data-name': 'Library (page 1)'
     });
 
     // Main content area
     const mainContent = createElement('div', {
-        className: "flex-grow"
+        className: "library-main-content"
     });
 
     mainContent.appendChild(SearchAndFilters());
