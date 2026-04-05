@@ -10,6 +10,7 @@
   padding: 2rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   border: 1px solid var(--gray-100);
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -238,6 +239,7 @@
   padding: 2.5rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   border: 1px solid var(--gray-100);
+  width: 100%;
 }
 
 .detail-section-title {
@@ -255,12 +257,20 @@
   margin: 0;
 }
 
+.detail-chapters-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .chapters-list-wrapper {
   background-color: var(--white);
   border-radius: 1.5rem;
   border: 1px solid var(--gray-100);
   overflow: hidden;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  width: 100%;
 }
 
 /* Chapter & Unit Rows */
@@ -292,6 +302,12 @@
   margin: 0;
 }
 
+@media (min-width: 1024px) {
+  .chapter-title {
+    font-size: 1.25rem;
+  }
+}
+
 .chapter-range {
   font-size: 0.75rem;
   font-weight: 700;
@@ -309,6 +325,12 @@
   transition: background-color 0.2s;
   cursor: pointer;
   border-bottom: 1px solid var(--gray-50);
+}
+
+@media (min-width: 1024px) {
+  .unit-row {
+    padding: 1.5rem 2.5rem;
+  }
 }
 
 .unit-row:last-child {
@@ -337,6 +359,12 @@
   font-weight: 500;
   transition: color 0.2s;
   margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .unit-desc {
+    font-size: 1.125rem;
+  }
 }
 
 .unit-row:hover .unit-desc {

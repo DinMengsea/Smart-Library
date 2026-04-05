@@ -144,8 +144,8 @@ function BookDetailPage(book) {
     mainContent.appendChild(summaryFrame);
 
     // Frame 3: Chapters Section
-    const chaptersContainer = createElement('div', 'flex flex-col gap-4');
-    chaptersContainer.appendChild(createElement('h2', 'text-xl font-bold text-gray-900 px-2', 'Chapters'));
+    const chaptersContainer = createElement('div', 'detail-chapters-section');
+    chaptersContainer.appendChild(createElement('h2', 'detail-section-title px-2', 'Chapters'));
     
     const chaptersList = createElement('div', 'chapters-list-wrapper');
     createChapters(book).forEach(chapter => {
