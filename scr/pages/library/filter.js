@@ -9,7 +9,7 @@ function SearchBar() {
             createElement('div', {
                 className: 'search-icon-wrapper',
                 'data-name': 'SearchIcon'
-            }, createImage(images.search, '', 'h-full w-full object-contain')),
+            }, createImage(images.search, '', 'search-icon-image')),
             createElement('div', {
                 className: 'search-input-wrapper',
                 'data-name': 'Search'
@@ -33,12 +33,11 @@ function Dropdown(label, options = [], currentStateKey) {
     const currentVal = libraryState[currentStateKey] !== label ? libraryState[currentStateKey] : label;
 
     const labelText = createElement('p', {
-        className: "flex-grow font-semibold text-xs sm:text-sm text-gray-600 truncate"
+        className: "dropdown-label"
     }, currentVal);
 
     const optionsList = createElement('div', {
-        className: "dropdown-options hidden",
-        style: "transition: all 0.2s ease-out;"
+        className: "dropdown-options hidden"
     });
 
     const allOptions = [label, ...options];
@@ -75,9 +74,8 @@ function Dropdown(label, options = [], currentStateKey) {
     };
 
     const chevron = createElement('div', {
-        className: 'dropdown-chevron',
-        style: "transition: transform 0.3s ease;"
-    }, createImage(images.chevronDown, '', 'h-full w-full object-contain'));
+        className: 'dropdown-chevron'
+    }, createImage(images.chevronDown, '', 'dropdown-chevron-image'));
 
     const dropdownBar = createElement('div', {
         className: "dropdown-bar",
@@ -108,7 +106,7 @@ function mybook() {
         }
     },
         createElement('p', {
-            className: `font-bold text-xs sm:text-sm ${isActive ? 'text-white' : 'text-indigo-600'} whitespace-nowrap`
+            className: "filter-btn-text"
         }, 'My Bookmarks')
     );
 }
@@ -139,7 +137,7 @@ function SearchAndFilters() {
 
     // My Bookmarks button
     const myBookWrapper = createElement('div', { 
-        className: "col-span-2 lg:col-span-1 lg:w-48 xl:w-56" 
+        className: "bookmark-wrapper" 
     }, mybook());
     filterGrid.appendChild(myBookWrapper);
 
