@@ -11,9 +11,9 @@ function FrameButton(book) {
   const readButton = createElement('div', {
     className: 'btn-primary-large',
     onclick: () => {
-      const modalContent = createElement('div', { className: "p-8 pt-12 flex flex-col items-center w-full" },
-          createElement('h2', { className: "text-2xl font-bold text-gray-900 mb-8" }, "Select a Chapter"),
-          createElement('div', { className: "w-full flex flex-col" },
+      const modalContent = createElement('div', { className: "modal-chapter-select-container" },
+          createElement('h2', { className: "modal-chapter-select-title" }, "Select a Chapter"),
+          createElement('div', { className: "modal-chapter-list" },
               ...createChapters(book)
           )
       );
@@ -30,8 +30,8 @@ function FrameButton(book) {
     onclick: () => toggleMarkBook(book.title)
   });
   
-  const bookmarkIcon = createElement('div', 'relative size-5 opacity-60');
-  bookmarkIcon.appendChild(createImage(book.isMarked ? images.check : images.bookmark, '', 'absolute inset-0 object-contain size-full'));
+  const bookmarkIcon = createElement('div', 'detail-bookmark-icon-wrapper');
+  bookmarkIcon.appendChild(createImage(book.isMarked ? images.check : images.bookmark, '', 'detail-bookmark-icon'));
   
   const markText = createElement('p', "btn-secondary-large-text", book.isMarked ? 'Bookmarked' : 'Bookmark');
   
@@ -69,19 +69,19 @@ function bookinfo(book) {
 
   // Filters / Metadata Grid
   const metadataGrid = createElement('div', { className: "detail-metadata-grid" },
-    createElement('div', { className: "flex flex-col" },
+    createElement('div', { className: "detail-metadata-item" },
         createElement('span', { className: "detail-metadata-label" }, "Language"),
         createElement('span', { className: "detail-metadata-value" }, book.language || 'English')
     ),
-    createElement('div', { className: "flex flex-col" },
+    createElement('div', { className: "detail-metadata-item" },
         createElement('span', { className: "detail-metadata-label" }, "Year"),
         createElement('span', { className: "detail-metadata-value" }, book.year || '2024')
     ),
-    createElement('div', { className: "flex flex-col" },
+    createElement('div', { className: "detail-metadata-item" },
         createElement('span', { className: "detail-metadata-label" }, "Format"),
         createElement('span', { className: "detail-metadata-value" }, "E-Book")
     ),
-    createElement('div', { className: "flex flex-col" },
+    createElement('div', { className: "detail-metadata-item" },
         createElement('span', { className: "detail-metadata-label" }, "Status"),
         createElement('span', { className: "detail-status-value" }, "Available")
     )
@@ -103,7 +103,7 @@ function createBookDetails(book) {
   const detailSection = createElement('div', 'detail-hero-section');
   
   const bookCover = createElement('div', 'detail-cover-wrapper');
-  bookCover.appendChild(createImage(book.image, book.title, 'object-cover size-full'));
+  bookCover.appendChild(createImage(book.image, book.title, 'detail-cover-image'));
   
   detailSection.appendChild(bookCover);
   detailSection.appendChild(bookinfo(book));
@@ -122,11 +122,10 @@ function BookDetailPage(book) {
 
     // Back Button
     const backBtn = createElement('button', {
-        className: "flex items-center gap-2 text-gray-400 hover:text-blue-600 transition-all font-bold group self-start",
-        style: { background: 'none', border: 'none', cursor: 'pointer' },
+        className: "detail-back-button",
         onclick: () => navigateTo('library')
     }, 
-        createElement('span', { className: "text-xl group-hover:-translate-x-1 transition-transform" }, '←'),
+        createElement('span', { className: "detail-back-icon" }, '←'),
         'Back to Library'
     );
     mainContent.appendChild(backBtn);
@@ -145,7 +144,7 @@ function BookDetailPage(book) {
 
     // Frame 3: Chapters Section
     const chaptersContainer = createElement('div', 'detail-chapters-section');
-    chaptersContainer.appendChild(createElement('h2', 'detail-section-title px-2', 'Chapters'));
+    chaptersContainer.appendChild(createElement('h2', 'detail-section-title', 'Chapters'));
     
     const chaptersList = createElement('div', 'chapters-list-wrapper');
     createChapters(book).forEach(chapter => {
