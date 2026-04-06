@@ -2,7 +2,7 @@
  * Creates a clean, simple header for a chapter.
  */
 function createChapterHeader(chapterNum, unitRange) {
-  const container = createElement('div', 'w-full');
+  const container = createElement('div', 'chapter-header-wrapper');
   
   const content = createElement('div', {
     className: "chapter-header"
@@ -104,7 +104,7 @@ function createChapters(book) {
   
   chaptersData.forEach(chapter => {
     const chapterContainer = createElement('div', {
-        className: "w-full overflow-hidden"
+        className: "chapter-item-container"
     });
     chapterContainer.appendChild(createChapterSection(chapter.num, chapter.range, chapter.units, book));
     chapters.push(chapterContainer);

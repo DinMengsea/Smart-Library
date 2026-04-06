@@ -102,7 +102,7 @@ function createStarRating(rating = 5) {
         const isFilled = i < rating;
         stars.push(
             createElement('div', {
-                className: `star-icon-wrapper ${isFilled ? 'opacity-100' : 'opacity-30'}`,
+                className: `star-icon-wrapper ${isFilled ? 'star-icon-filled' : 'star-icon-empty'}`,
                 'data-name': 'Star'
             }, createImage(images.star, '', 'star-icon'))
         );
