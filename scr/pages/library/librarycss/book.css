@@ -220,7 +220,6 @@
   color: var(--gray-600);
   line-height: 1.625;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -228,7 +227,6 @@
 @media (min-width: 640px) {
   .book-description-text {
     font-size: 0.875rem;
-    -webkit-line-clamp: 3;
   }
 }
 
