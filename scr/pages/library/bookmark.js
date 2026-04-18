@@ -1,7 +1,4 @@
-/**
- * Renders the Bookmark page which displays all books marked by the user.
- * @returns {HTMLElement} The bookmark page container
- */
+
 function BookmarkPage() {
     const container = createElement('div', {
         className: "library-page-container",

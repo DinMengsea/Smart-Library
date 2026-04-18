@@ -1,10 +1,4 @@
-/**
- * Creates the action buttons for a book.
- * @param {boolean} isMarked - Whether the book is marked
- * @param {boolean} showViewCourse - Whether to show the 'View Course' button
- * @param {Function} onToggleMark - Callback when toggle is clicked
- * @returns {HTMLElement} The buttons container
- */
+
 function BookActions(isMarked = false, showViewCourse = false, onToggleMark, book) {
     const buttonBaseClass = "book-action-btn";
     
@@ -60,11 +54,7 @@ function BookActions(isMarked = false, showViewCourse = false, onToggleMark, boo
     return container;
 }
 
-/**
- * Creates a single book card display.
- * @param {object} book - The book object
- * @returns {HTMLElement} The book card element
- */
+
 function BookDisplay(book) {
     const { title, author, description, image, rating, isMarked, category } = book;
     const shortDesc = description.replace('Read more ...', '');
@@ -450,10 +440,7 @@ function updateLibrary(newState) {
     }
 }
 
-/**
- * Renders the list of books.
- * @returns {HTMLElement} The books list container
- */
+
 function ListDisplayBook() {
     const filteredBooks = allBooks.filter(book => {
         const matchesSearch = book.title.toLowerCase().includes(libraryState.search.toLowerCase()) || 
@@ -503,9 +490,7 @@ function ListDisplayBook() {
     return container;
 }
 
-/**
- * Main section for Trending Books.
- */
+
 function TrendingBooksSection() {
     // Get total pages for the current filter
     const filteredBooksCount = allBooks.filter(book => {

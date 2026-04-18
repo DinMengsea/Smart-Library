@@ -1,10 +1,4 @@
-/**
- * Creates the book reader page.
- * @param {object} book - The book object
- * @param {object} chapter - The current chapter object
- * @param {object} unit - The current unit object
- * @returns {HTMLElement} The reader page container
- */
+
 function BookPage(book, chapter, unit) {
     if (!book || !chapter || !unit) return LibraryPage1();
 

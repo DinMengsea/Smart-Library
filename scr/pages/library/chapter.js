@@ -1,6 +1,4 @@
-/**
- * Creates a clean, simple header for a chapter.
- */
+
 function createChapterHeader(chapterNum, unitRange) {
   const container = createElement('div', 'chapter-header-wrapper');
   
