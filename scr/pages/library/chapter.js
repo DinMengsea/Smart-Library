@@ -54,11 +54,11 @@ function createUnitRow(unitNum, description, book, chapter) {
  * Creates a chapter section with its units.
  */
 function createChapterSection(chapterNum, unitRange, units, book) {
-  const container = createElement('div', 'flex flex-col w-full');
+  const container = createElement('div', 'chapter-section');
   
   container.appendChild(createChapterHeader(chapterNum, unitRange));
   
-  const unitsContainer = createElement('div', { className: "flex flex-col bg-white" });
+  const unitsContainer = createElement('div', { className: "units-container" });
   units.forEach(unit => {
     unitsContainer.appendChild(createUnitRow(unit.num, unit.desc, book, { num: chapterNum, range: unitRange }));
   });
