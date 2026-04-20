@@ -3,7 +3,12 @@ function BookPage(book, chapter, unit) {
     if (!book || !chapter || !unit) return LibraryPage1();
 
     const container = createElement('div', 'reader-container');
-    container.style.top = '72px';
+    // We'll let CSS handle the top positioning or set it more dynamically
+    if (window.innerWidth < 768) {
+        container.style.top = '80px'; 
+    } else {
+        container.style.top = '80px';
+    }
     container.style.zIndex = '10'; // Keep it below any modals but above regular content
 
     // Header inside the reader (contains back button and title)
@@ -51,15 +56,6 @@ function BookPage(book, chapter, unit) {
     }
 
     container.appendChild(scroller);
-
-    // Disable keyboard scrolling
-    const preventKeyScroll = (e) => {
-        const keys = ['ArrowLeft', 'ArrowRight', ' ', 'PageUp', 'PageDown', 'Home', 'End'];
-        if (keys.includes(e.key) && document.querySelector('.reader-container')) {
-            e.preventDefault();
-        }
-    };
-    window.addEventListener('keydown', preventKeyScroll);
 
     // Mouse drag-to-scroll (Simulation of "hand" scroll for laptops)
     let isDown = false;
@@ -137,7 +133,7 @@ function BookPage(book, chapter, unit) {
 
     const prevBtn = createElement('button', {
         className: 'reader-nav-btn',
-        style: { borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px', color: 'white', fontSize: '14px', fontWeight: '600' },
+        style: { borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '8px', color: 'white', fontSize: '14px', fontWeight: '600' },
         onclick: () => scrollToPage('prev')
     }, 
         createElement('span', {}, '←'),
@@ -188,7 +184,7 @@ function BookPage(book, chapter, unit) {
 
     const nextBtn = createElement('button', {
         className: 'reader-nav-btn',
-        style: { borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px', color: 'white', fontSize: '14px', fontWeight: '600' },
+        style: { borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '8px', color: 'white', fontSize: '14px', fontWeight: '600' },
         onclick: () => scrollToPage('next')
     }, 
         createElement('span', { className: 'next-btn-text hidden md:inline' }, 'Next'),

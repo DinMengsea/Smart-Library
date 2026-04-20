@@ -22,9 +22,6 @@ function createChapterHeader(chapterNum, unitRange) {
   return container;
 }
 
-/**
- * Creates a simple, clean row for a unit.
- */
 function createUnitRow(unitNum, description, book, chapter) {
   const container = createElement('div', {
     className: "unit-row",
@@ -48,9 +45,7 @@ function createUnitRow(unitNum, description, book, chapter) {
   return container;
 }
 
-/**
- * Creates a chapter section with its units.
- */
+
 function createChapterSection(chapterNum, unitRange, units, book) {
   const container = createElement('div', 'chapter-section');
   
@@ -94,9 +89,7 @@ const chaptersData = [
   }
 ];
 
-/**
- * Main function to generate the chapters list.
- */
+
 function createChapters(book) {
   const chapters = [];
   

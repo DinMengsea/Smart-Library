@@ -26,16 +26,10 @@ function setupNavigation() {
     const body = document.body;
 
     if (hamburger && navLinks) {
-        hamburger.addEventListener('click', () => {
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
-            
-            // Prevent scrolling when menu is open
-            if (navLinks.classList.contains('active')) {
-                body.style.overflow = 'hidden';
-            } else {
-                body.style.overflow = 'auto';
-            }
         });
 
         // Close menu when clicking a link
@@ -44,8 +38,15 @@ function setupNavigation() {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('active');
-                body.style.overflow = 'auto';
             });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
         });
     }
 
