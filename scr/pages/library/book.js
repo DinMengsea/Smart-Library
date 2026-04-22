@@ -417,7 +417,7 @@ function updateLibrary(newState) {
     }
     
     // Update filters if anything OTHER than search changed
-    // This prevents the search bar from losing focus while typing
+
     const filtersSection = document.getElementById('search-and-filters');
     const isOnlySearch = newState.search !== undefined && Object.keys(newState).length === 1;
     
@@ -545,3 +545,4 @@ function TrendingBooksSection() {
 
     return section;
 }
+
