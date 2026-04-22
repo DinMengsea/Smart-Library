@@ -23,16 +23,24 @@ function FrameButton(book) {
   readButton.appendChild(readText);
   
   // Mark Book button
-  const markButton = createElement('div', {
+  const markButton = createElement('button', {
     className: 'btn-secondary-large',
-    onclick: () => toggleMarkBook(book.title)
+    type: 'button'
   });
-  
+
   const bookmarkIcon = createElement('div', 'detail-bookmark-icon-wrapper');
-  bookmarkIcon.appendChild(createImage(book.isMarked ? images.check : images.bookmark, '', 'detail-bookmark-icon'));
-  
+  const bookmarkImage = createImage(book.isMarked ? images.check : images.bookmark, '', 'detail-bookmark-icon');
+  bookmarkIcon.appendChild(bookmarkImage);
+
   const markText = createElement('p', "btn-secondary-large-text", book.isMarked ? 'Bookmarked' : 'Bookmark');
-  
+
+  markButton.onclick = (e) => {
+    e.stopPropagation();
+    const marked = toggleMarkBook(book.title, { refresh: false });
+    bookmarkImage.src = marked ? images.check : images.bookmark;
+    markText.textContent = marked ? 'Bookmarked' : 'Bookmark';
+  };
+
   markButton.appendChild(bookmarkIcon);
   markButton.appendChild(markText);
   

@@ -1,11 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Library</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Library</title>
+
+  <link rel="stylesheet" href="../../components/navigationbar/navigationbar.css">
+  <link rel="stylesheet" href="../../components/footer/footer.css">
+  <link rel="stylesheet" href="./course style/course.css">
+  <link rel="stylesheet" href="./course style/filtercourse.css">
 </head>
 <body>
-    
+
+  <!-- Header -->
+  <div id="header-placeholder"></div>
+  <script type="module">
+    import { HeaderComponent } from '../../components/navigationbar/navigationbar.js';
+    HeaderComponent('header-placeholder');
+  </script>
+
+  <main class="course-page">
+    <div id="filter-placeholder"></div>
+    <h2 id="book-section-title">Mathematics Books</h2>
+    <div id="books-container"></div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Page JS -->
+  <script type="module" src="./filtercourse.js"></script>
+  <script src="./course.js"></script>
+
+  <!-- Footer dependencies -->
+  <script src="../library/helper.js"></script>
+  <script src="../../components/footer/footer.js"></script>
+  <script>
+    FooterComponent('footer-placeholder');
+  </script>
+
 </body>
 </html>

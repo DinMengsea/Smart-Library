@@ -43,3 +43,12 @@ function Footer() {
         }, 'Terms & policies')
     );
 }
+
+function FooterComponent(containerId) {
+    const container = document.getElementById(containerId);
+    if (container) {
+        container.appendChild(Footer());
+    }
+}
+
+window.FooterComponent = FooterComponent;

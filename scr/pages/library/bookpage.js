@@ -30,11 +30,39 @@ function BookPage(book, chapter, unit) {
     );
     
     // Reader actions (could be bookmark, settings, etc. - based on reader.css)
-    const readerActions = createElement('div', 'reader-actions',
-        createElement('button', 'reader-action-btn', 
-            createImage(images.bookmark, 'Bookmark', 'reader-action-icon')
-        )
+    let readerBookmarkIcon;
+
+    const readerBookmarkButton = createElement('button', {
+        className: 'reader-action-btn',
+        type: 'button',
+        'aria-label': book.isMarked ? 'Remove bookmark' : 'Add bookmark',
+        title: book.isMarked ? 'Bookmarked' : 'Bookmark',
+        onclick: (e) => {
+            e.stopPropagation();
+
+            const marked = toggleMarkBook(book.title, { refresh: false });
+
+            if (readerBookmarkIcon) {
+                readerBookmarkIcon.src = marked ? images.check : images.bookmark;
+            }
+
+            readerBookmarkButton.setAttribute(
+                'aria-label',
+                marked ? 'Remove bookmark' : 'Add bookmark'
+            );
+            readerBookmarkButton.title = marked ? 'Bookmarked' : 'Bookmark';
+        }
+    });
+
+    readerBookmarkIcon = createImage(
+        book.isMarked ? images.check : images.bookmark,
+        'Bookmark',
+        'reader-action-icon'
     );
+
+    readerBookmarkButton.appendChild(readerBookmarkIcon);
+
+    const readerActions = createElement('div', 'reader-actions', readerBookmarkButton);
     
     readerHeader.appendChild(backBtn);
     readerHeader.appendChild(titleGroup);
