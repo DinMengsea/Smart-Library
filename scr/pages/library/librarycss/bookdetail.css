@@ -300,6 +300,15 @@
 }
 
 /* Chapter & Unit Rows */
+.chapter-header-wrapper {
+  width: 100%;
+}
+
+.chapter-item-container {
+  width: 100%;
+  overflow: hidden;
+}
+
 .chapter-header {
   display: flex;
   align-items: center;

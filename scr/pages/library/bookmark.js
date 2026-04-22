@@ -1,6 +1,4 @@
 
-// =========================bookmark page========================
-
 function BookmarkPage() {
     const container = createElement('div', {
         className: "library-page-container",
@@ -47,7 +45,7 @@ function BookmarkPage() {
         }, 
             createElement('div', {
                 className: "empty-state-icon"
-            }, createImage(images.bookmark, '', 'w-full h-full object-contain')),
+            }, createImage(images.bookmark, '', 'empty-state-icon-image')),
             createElement('p', {
                 className: "empty-state-text"
             }, 'No bookmarked books yet.')

@@ -1,5 +1,4 @@
 
-// =========================book action=========================
 function BookActions(isMarked = false, showViewCourse = false, onToggleMark, book) {
     const buttonBaseClass = "book-action-btn";
     
@@ -55,7 +54,6 @@ function BookActions(isMarked = false, showViewCourse = false, onToggleMark, boo
     return container;
 }
 
-// =========================book display card=========================
 
 function BookDisplay(book) {
     const { title, author, description, image, rating, isMarked, category } = book;
@@ -443,8 +441,6 @@ function updateLibrary(newState) {
 }
 
 
-// =========================list book=========================
-
 function ListDisplayBook() {
     const filteredBooks = allBooks.filter(book => {
         const matchesSearch = book.title.toLowerCase().includes(libraryState.search.toLowerCase()) || 
@@ -494,7 +490,6 @@ function ListDisplayBook() {
     return container;
 }
 
-// =======================trending books main section========================
 
 function TrendingBooksSection() {
     // Get total pages for the current filter

@@ -1,6 +1,4 @@
-/**
- * Creates the action buttons for the book detail page.
- */
+
 function FrameButton(book) {
   const container = createElement('div', 'detail-actions-wrapper');
   container.setAttribute('data-name', 'frame button');
@@ -54,9 +52,7 @@ function FrameButton(book) {
   return container;
 }
 
-/**
- * Creates the info section (Title, Author, Rating, Filters).
- */
+
 function bookinfo(book) {
   const container = createElement('div', 'detail-info-container');
   
@@ -96,9 +92,7 @@ function bookinfo(book) {
   return container;
 }
 
-/**
- * Creates the book details hero section.
- */
+
 function createBookDetails(book) {
   const detailSection = createElement('div', 'detail-hero-section');
   
@@ -111,9 +105,7 @@ function createBookDetails(book) {
   return detailSection;
 }
 
-/**
- * Main Page Component.
- */
+
 function BookDetailPage(book) {
     if (!book) return LibraryPage1();
 

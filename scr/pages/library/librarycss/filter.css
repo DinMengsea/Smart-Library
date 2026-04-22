@@ -110,15 +110,15 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.5rem;
   width: 100%;
-  justify-content: center;
-  max-width: 48rem;
   margin-left: auto;
   margin-right: auto;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
   .filter-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1rem;
+    max-width: 100%;
   }
 }
 
@@ -126,8 +126,10 @@
   .filter-grid {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     width: auto;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    gap: 1rem;
   }
 }
 

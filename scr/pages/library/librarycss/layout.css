@@ -41,6 +41,11 @@
   .sm\:flex { display: flex; }
 }
 
+@media (min-width: 768px) {
+  .md\:inline { display: inline; }
+  .md\:flex { display: flex; }
+}
+
 /* Library Page Container */
 .library-page-container {
   min-height: 100vh;

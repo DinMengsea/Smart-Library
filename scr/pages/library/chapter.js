@@ -1,8 +1,6 @@
-/**
- * Creates a clean, simple header for a chapter.
- */
+
 function createChapterHeader(chapterNum, unitRange) {
-  const container = createElement('div', 'w-full');
+  const container = createElement('div', 'chapter-header-wrapper');
   
   const content = createElement('div', {
     className: "chapter-header"
@@ -24,9 +22,6 @@ function createChapterHeader(chapterNum, unitRange) {
   return container;
 }
 
-/**
- * Creates a simple, clean row for a unit.
- */
 function createUnitRow(unitNum, description, book, chapter) {
   const container = createElement('div', {
     className: "unit-row",
@@ -50,9 +45,7 @@ function createUnitRow(unitNum, description, book, chapter) {
   return container;
 }
 
-/**
- * Creates a chapter section with its units.
- */
+
 function createChapterSection(chapterNum, unitRange, units, book) {
   const container = createElement('div', 'chapter-section');
   
@@ -96,15 +89,13 @@ const chaptersData = [
   }
 ];
 
-/**
- * Main function to generate the chapters list.
- */
+
 function createChapters(book) {
   const chapters = [];
   
   chaptersData.forEach(chapter => {
     const chapterContainer = createElement('div', {
-        className: "w-full overflow-hidden"
+        className: "chapter-item-container"
     });
     chapterContainer.appendChild(createChapterSection(chapter.num, chapter.range, chapter.units, book));
     chapters.push(chapterContainer);
