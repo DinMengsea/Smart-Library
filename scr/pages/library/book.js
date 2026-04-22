@@ -380,13 +380,15 @@ allBooks.forEach(book => {
     }
 });
 
-function toggleMarkBook(bookTitle) {
+function toggleMarkBook(bookTitle, options = {}) {
+    const { refresh = true } = options;
+
     const book = allBooks.find(b => b.title === bookTitle);
     if (book) {
         book.isMarked = !book.isMarked;
-        
-        // Update localStorage
+
         const currentMarked = JSON.parse(localStorage.getItem('markedBooks') || '[]');
+
         if (book.isMarked) {
             if (!currentMarked.includes(bookTitle)) {
                 currentMarked.push(bookTitle);
@@ -397,11 +399,17 @@ function toggleMarkBook(bookTitle) {
                 currentMarked.splice(index, 1);
             }
         }
+
         localStorage.setItem('markedBooks', JSON.stringify(currentMarked));
 
-        // Re-render trending section to show changes
-        updateLibrary({});
+        if (refresh) {
+            updateLibrary({});
+        }
+
+        return book.isMarked;
     }
+
+    return false;
 }
 
 function updateLibrary(newState) {
