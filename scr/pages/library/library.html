@@ -10,14 +10,15 @@
     <link rel="stylesheet" href="./librarycss/library.css">
 </head>
 <body>
-        <div id="header-placeholder"></div>
-        <script type="module">
-            import { HeaderComponent } from '../../components/navigationbar/navigationbar.js';
-            HeaderComponent('header-placeholder');
-        </script>
+    <div id="nav"></div>
+    <script type="module">
+        import { HeaderComponent } from '../../components/navigationbar/navigationbar.js';
+        HeaderComponent('nav');
+    </script>
+    
+    
     <div id="root"></div>
     <!-- load script in order -->
-
     <script src="helper.js"></script>
     <script src="../../components/footer/footer.js"></script>
     <script src="filter.js"></script>
