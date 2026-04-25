@@ -34,6 +34,7 @@ body {
     border-bottom: 1px solid var(--border-color);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     transition: var(--transition);
+    font-family: 'Inter', sans-serif;
 }
 
 .nav-container {
@@ -71,6 +72,7 @@ body {
 }
 
 .logotext p {
+    font-family: 'Inter', sans-serif;
     font-size: 1.25rem;
     font-weight: 800;
     font-style: italic;
