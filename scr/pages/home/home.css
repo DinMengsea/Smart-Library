@@ -1,3 +1,4 @@
+/* General Resets */
 * {
     margin: 0;
     padding: 0;
@@ -8,182 +9,127 @@ body {
     font-family: 'Epilogue', sans-serif;
     position: relative;
     min-height: 100vh;
-    color: #FFFFFF;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+    background-color: #FFFFFF; 
 }
 
+/* Background at 50% opacity */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: url('Image/BG.png') center/cover no-repeat;
+    background: url('../../assets/homepage/BG.png') center/cover no-repeat;
     opacity: 0.5;
     z-index: -1;
 }
-  
- .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 8%;
+
+/* Hero Section */
+.hero { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 60px 10% 40px; /* Reduced bottom padding */
+    flex: 0 0 auto;
 }
 
-.logo-container { display: flex; align-items: center; gap: 15px; }
-
-.main-logo {
-    width: 65px; 
-    height: auto;
-    object-fit: contain;
+.hero-text h1 { 
+    font-size: 72px; 
+    font-weight: 800; 
+    color: #FFFFFF; 
+    line-height: 1.1;
 }
 
-.brand-name { font-weight: 700; font-size: 1.4rem; }
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 40px;
-    position: relative;
+.hero-text p { 
+    font-size: 20px; 
+    color: #FFFFFF; 
+    margin-top: 10px;
 }
 
-.nav-links li a {
-    text-decoration: none;
-    color: #FFFFFF;
-    font-weight: 500;
+.hero-img-box img { 
+    width: 520px; 
+    height: auto; 
 }
 
-.nav-underline {
-    position: absolute;
-    bottom: -8px;
-    height: 3px;
-    background-color: #2595FC;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-} 
-
-
-
-/* Auth Buttons */
-.auth-buttons {
-    display: flex;
-    gap: 15px;
-}
-
-.btn-signup {
-    background: white;
-    color: #4c47af;
-    border: none;
-    padding: 10px 24px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.btn-login {
-    background: #4c47af; /* Purple from your screenshot */
-    color: white;
-    border: none;
-    padding: 10px 24px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.auth-group { display: flex; gap: 15px; }
-
-.btn-signup, .btn-login {
-    padding: 12px 24px;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: none;
-}
-
-.btn-signup { background: white; color: #3C2CB4; }
-.btn-signup:hover { background: #f0f0f0; transform: scale(1.05); }
-
-.btn-login { background: #3C2CB4; color: white; }
-.btn-login:hover { background: #2e2191; box-shadow: 0 4px 15px rgba(60, 44, 180, 0.4); transform: scale(1.05); }
-
-.hero { display: flex; justify-content: space-between; align-items: center; padding: 40px 10%; flex: 1; }
-.hero-text h1 { font-size: 70px; line-height: 80px; }
-.hero-img-box img { width: 500px; }
-
-
-/* --- NEW WHITE SECTION --- */
+/* Compact White Section */
 .white-section {
     background-color: #FFFFFF;
     width: 100%;
-    flex-grow: 1; /* Pushes the white background all the way down */
-    padding-top: 50px; /* Space between the hero and cards */
+    /* Minimized padding to keep the section small */
+    padding: 30px 5% 40px; 
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-    z-index: 1; /* Sits on top of the background image */
+    z-index: 1;
 }
 
+/* Card Container */
 .card-section {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    padding-bottom: 60px;
+    gap: 20px; 
     width: 100%;
+    max-width: 1100px;
+    margin-top: 0; /* Keeps buttons strictly inside white area */
 }
 
+/* Feature Cards */
 .feature-card {
-    background: #F4F5FA; /* Swapped to the subtle blue-grey tint shown in the image */
-    width: 230px;
-    padding: 40px 20px;
-    border-radius: 30px;
+    background: #EDEEFA;
+    width: 210px; 
+    padding: 25px 15px; /* Thinner vertical padding */
+    border-radius: 25px;
     text-align: center;
-    color: #222222;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06); /* Made shadow softer to match image */
-    transition: 0.3s ease;
+    color: #111111;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
-.feature-card:hover { transform: translateY(-10px); }
-
-.icon-box { margin: 0 auto 20px; width: 78px; height: 78px; }
-
-.icon-circle-box {
-    width: 80px; height: 80px;
-    background: #F5FBFF;
-    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 50%;
-    display: flex; justify-content: center; align-items: center;
-    margin: 0 auto 20px;
+.feature-card:hover { 
+    transform: translateY(-5px); 
 }
 
-.icon-frame-box {
-    position: relative;
-    width: 85px; height: 85px;
-    background: #F5FBFF;
-    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
-    margin: 0 auto 20px;
-    overflow: hidden;
-    display: flex; justify-content: center; align-items: center;
+.feature-card h3 {
+    margin-top: 12px;
+    font-size: 16px; 
+    font-weight: 700;
 }
 
-.brain-vector { width: 50px; height: 50px; }
-.brain-vector path { stroke: #F84B4E; stroke-width: 1.2px; fill: none; }
-.abstract-vector { width: 84%; height: 100%; }
+/* Icon Styles */
+.icon-circle-box, .icon-frame-box { 
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+}
 
+.icon-circle-box { background: #FFFFFF; border-radius: 50%; }
+.icon-frame-box { background: #EDEEFA; border-radius: 15px; }
+
+/* Footer Styling */
 .footer {
+    background-color: #FFFFFF;
     text-align: center;
-    padding: 40px 0;
-    margin-top: auto;
-    color: #222222; /* Makes the pipe "|" dividers black */
-}
-.footer-links a {
-    color: #222222; /* Changed links to black so they appear over white */
-    text-decoration: none;
-    margin: 0 15px; /* Widened the spacing to match the image */
-    font-size: 0.9rem;
-    opacity: 0.8;
-    font-weight: 500;
+    padding: 30px 0;
+    width: 100%;
+    color: #222222;
+    margin-top: auto; 
 }
 
-.footer-links a:hover { opacity: 1; text-decoration: underline; }
+.footer-links a {
+    color: #666666;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover { 
+    color: #111111;
+    text-decoration: underline; 
+}
