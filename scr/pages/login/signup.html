@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="signup.css">
-    <link rel="stylesheet" href="../../scr/assets/logo/ourlogo.png">
+    <link rel="stylesheet" href="../../pages/login/signup.css">
+    <link rel="stylesheet" href="../../assets/logo/ourlogo.png">
+    <link rel="stylesheet" href="../../components/navigationbar/navigationbar.css">
 
 </head>
 <body>
+
+    <div id="header-placeholder"></div>
+        <script type="module">
+            import { HeaderComponent } from '../../components/navigationbar/navigationbar.js';
+            HeaderComponent('header-placeholder');
+        </script>
     <div class="signup-container">
         <div class="signup-box">
             <div class="login-box">
                 <div class="logoimg">
-                    <img src="../../scr/assets/logo/ourlogo.png" alt="Logo">
+                    <img src="../../assets/logo/ourlogo.png" alt="Logo">
                 </div>
             <h2>SMART LIBRARY</h2>
             <p>Create your account</p>
