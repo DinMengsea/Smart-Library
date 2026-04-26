@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="navigationbar.css">
+    <link rel="stylesheet" href="../../scr/assets/logo/ourlogo.png">
+    <link rel="stylesheet" href="../../scr/assets/logo/facebook.png">
+    <link rel="stylesheet" href="../../scr/assets/logo/instagram.png">
+    <link rel="stylesheet" href="../../scr/assets/logo/x.png">
+
+</head>
+<body>
+    <div id="header-placeholder"></div>
+        <script type="module">
+            import { HeaderComponent } from '../../components/navigationbar/navigationbar.js';
+            HeaderComponent('header-placeholder');
+        </script>
+    <div id="root"></div>
+    <div class="login-container">
+    <div class="login-box">
+        <div class="logoimg">
+            <img src="../../scr/assets/logo/ourlogo.png" alt="Logo">
+        </div>
+        <h2>SMART LIBRARY</h2>
+        <p>Login to your account</p>
+         <input type="text" placeholder="Username">
+        <input type="password" placeholder="Password">
+        <button class="login-btn">Log in</button>
+        <div class="links">
+            <a href="#">Forget password?</a> |
+            <a href="signup.html">Register</a>
+        </div>
+<br>
+
+    </div>
+    
+</div>
+</body>
+</html>
