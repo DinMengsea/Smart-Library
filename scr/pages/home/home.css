@@ -1,4 +1,6 @@
-/* General Resets */
+/* =========================================
+   1. GENERAL RESETS & BASE STYLES
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -15,7 +17,7 @@ body {
     background-color: #FFFFFF; 
 }
 
-/* Background at 50% opacity */
+/* Background Overlay at 50% opacity */
 body::before {
     content: "";
     position: fixed;
@@ -25,13 +27,19 @@ body::before {
     z-index: -1;
 }
 
-/* Hero Section */
+/* =========================================
+   2. HERO SECTION
+   ========================================= */
 .hero { 
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
-    padding: 60px 10% 40px; /* Reduced bottom padding */
+    padding: 60px 10% 40px;
     flex: 0 0 auto;
+}
+
+.hero-text {
+    flex: 1;
 }
 
 .hero-text h1 { 
@@ -47,17 +55,25 @@ body::before {
     margin-top: 10px;
 }
 
+.hero-img-box {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
 .hero-img-box img { 
-    width: 520px; 
+    width: 100%;
+    max-width: 520px; 
     height: auto; 
 }
 
-/* Compact White Section */
+/* =========================================
+   3. WHITE SECTION & FEATURE CARDS
+   ========================================= */
 .white-section {
     background-color: #FFFFFF;
     width: 100%;
-    /* Minimized padding to keep the section small */
-    padding: 30px 5% 40px; 
+    padding: 40px 5% 60px; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -65,31 +81,38 @@ body::before {
     z-index: 1;
 }
 
-/* Card Container */
 .card-section {
     display: flex;
     justify-content: center;
     gap: 20px; 
     width: 100%;
     max-width: 1100px;
-    margin-top: 0; /* Keeps buttons strictly inside white area */
 }
 
-/* Feature Cards */
+/* NEW: Card Link Wrapper Styles */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    flex: 1;
+    max-width: 250px;
+}
+
 .feature-card {
     background: #EDEEFA;
-    width: 210px; 
-    padding: 25px 15px; /* Thinner vertical padding */
+    padding: 25px 15px;
     border-radius: 25px;
     text-align: center;
     color: #111111;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    height: 100%; /* Ensures all cards in a row have same height */
 }
 
 .feature-card:hover { 
-    transform: translateY(-5px); 
+    transform: translateY(-8px); 
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
 }
 
 .feature-card h3 {
@@ -99,23 +122,36 @@ body::before {
 }
 
 /* Icon Styles */
-.icon-circle-box, .icon-frame-box { 
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60px;
-    height: 60px;
+.icon-box, .icon-circle-box, .icon-frame-box { 
+    margin: 0 auto 20px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
 }
 
-.icon-circle-box { background: #FFFFFF; border-radius: 50%; }
-.icon-frame-box { background: #EDEEFA; border-radius: 15px; }
+.icon-box { width: 70px; height: 70px; }
 
-/* Footer Styling */
+.icon-circle-box {
+    width: 70px; height: 70px;
+    background: #F5FBFF;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+}
+
+.icon-frame-box {
+    width: 70px; height: 70px;
+    background: #F5FBFF;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+/* =========================================
+   4. FOOTER
+   ========================================= */
 .footer {
     background-color: #FFFFFF;
     text-align: center;
-    padding: 30px 0;
+    padding: 45px 0;
     width: 100%;
     color: #222222;
     margin-top: auto; 
@@ -126,10 +162,32 @@ body::before {
     text-decoration: none;
     margin: 0 15px;
     font-size: 14px;
-    transition: color 0.3s ease;
 }
 
 .footer-links a:hover { 
     color: #111111;
     text-decoration: underline; 
+}
+
+/* =========================================
+   5. RESPONSIVE MEDIA QUERIES
+   ========================================= */
+
+/* Tablet View */
+@media (max-width: 1024px) {
+    .hero-text h1 { font-size: 56px; }
+    .hero-img-box img { max-width: 400px; }
+    .card-section { flex-wrap: wrap; gap: 30px; }
+    .card-link { flex: 0 0 calc(45% - 15px); max-width: none; }
+}
+
+/* Mobile View */
+@media (max-width: 767px) {
+    .hero { flex-direction: column; text-align: center; }
+    .hero-text h1 { font-size: 42px; }
+    .hero-img-box { justify-content: center; margin-top: 30px; }
+    .card-section { flex-direction: column; align-items: center; }
+    .card-link { width: 100%; max-width: 320px; flex: none; }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { margin: 0; }
 }
