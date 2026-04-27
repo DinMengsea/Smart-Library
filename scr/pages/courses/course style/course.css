@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #f3f2fb;
+  color: #0f172a;
+}
+
+.course-page {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* TITLE */
+.books-header h1 {
+  font-size: 48px;
+  margin: 0 0 8px;
+  font-weight: 800;
+}
+
+.books-header p {
+  margin: 0 0 40px;
+  font-size: 18px;
+  color: #5f6b7a;
+}
+
+/* BOOK LIST */
+#books-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* BOOK CARD */
+.book-card {
+  background: #ffffff;
+  border-radius: 26px;
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: 230px 1fr 200px;
+  gap: 32px;
+  align-items: start;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.12);
+}
+
+/* IMAGE */
+.book-image {
+  width: 230px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 18px;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.book-card:hover .book-image {
+  transform: scale(1.03);
+}
+
+/* TEXT */
+.book-info h3 {
+  margin: 0 0 12px;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.book-author {
+  color: #2f5fff;
+  font-size: 18px;
+  margin-bottom: 22px;
+  font-weight: 500;
+}
+
+.book-description {
+  font-size: 18px;
+  color: #4b5563;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.read-more {
+  color: #2f5fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* BUTTONS */
+.book-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.action-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid #dbeafe;
+  cursor: pointer;
+  text-decoration: none;
+  background: white;
+}
+
+.action-btn:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+              0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.action-btn:active {
+  transform: scale(0.95);
+}
+
+.action-btn img {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.action-btn.primary {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+.action-btn.primary:hover {
+  background-color: #dbeafe;
+}
+
+.action-btn.secondary {
+  background-color: #eef2ff;
+  color: #4338ca;
+  border-color: #e0e7ff;
+}
+
+.action-btn.secondary:hover {
+  background-color: #e0e7ff;
+}
+
+.action-btn.btn-marked {
+  background-color: #f0fdf4;
+  color: #15803d;
+  border-color: #dcfce7;
+}
+
+.action-btn.btn-mark {
+  background-color: #ffffff;
+  color: #374151;
+  border-color: #dbeafe;
+}
+
+.action-btn.btn-mark:hover {
+  background-color: #f9fafb;
+}
+
+/* RATING */
+.book-rating {
+  text-align: right;
+  padding-top: 6px;
+}
+
+.stars {
+  color: #f4c430;
+  font-size: 24px;
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+}
+
+.book-rating p {
+  margin: 0;
+  color: #9aa3b2;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ===================== */
+/* TABLET */
+/* ===================== */
+@media (max-width: 1024px) {
+  .book-card {
+    grid-template-columns: 190px 1fr;
+  }
+
+  .book-rating {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  .book-image {
+    width: 190px;
+    height: 260px;
+  }
+
+  .book-info h3 {
+    font-size: 26px;
+  }
+
+  .book-actions {
+    margin-top: 32px;
+  }
+
+  .action-btn {
+    flex: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* ===================== */
+/* MOBILE */
+/* ===================== */
+@media (max-width: 768px) {
+  .course-page {
+    padding: 20px 16px 40px;
+  }
+
+  .book-card {
+    grid-template-columns: 110px 1fr;
+    gap: 16px;
+    padding: 18px;
+    border-radius: 20px;
+    align-items: start;
+  }
+
+  .book-image {
+    width: 110px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+  }
+
+  .book-info h3 {
+    font-size: 22px;
+    line-height: 1.15;
+    margin: 0 0 10px;
+  }
+
+  .book-author {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  .book-description {
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  .read-more {
+    font-size: 15px;
+  }
+
+  .book-rating {
+    grid-column: 2;
+    text-align: left;
+    padding-top: 0;
+    margin-bottom: 12px;
+  }
+
+  .stars {
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+
+  .book-rating p {
+    font-size: 12px;
+  }
+
+  .book-actions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .action-btn {
+    flex: 0 0 auto;
+    width: auto;
+    min-height: 44px;
+    padding: 0 16px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+
+  .action-btn img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+#filter-placeholder {
+  margin-bottom: 48px;
+}
+
+#book-section-title {
+  margin-bottom: 24px;
+}

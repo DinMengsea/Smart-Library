@@ -75,39 +75,48 @@ const images = {
     search: '../../assets/icons/search.png',
     chevronDown: '../../assets/icons/dropdown.png',
     check: '../../assets/icons/check.png',
-    course: '../../assets/icons/course.png'
-
+    course: '../../assets/icons/course.png',
+    back: '../../assets/icons/back.png',
+    previous: '../../assets/icons/previous.png',
+    next: '../../assets/icons/next.png',
+    bp1: '../../assets/pagebook/bp1.png',
+    bp2: '../../assets/pagebook/bp2.png',
+    bp3: '../../assets/pagebook/bp3.png',
+    bp4: '../../assets/pagebook/bp4.png',
+    bp5: '../../assets/pagebook/bp5.png',
+    bp6: '../../assets/pagebook/bp6.png',
+    bp7: '../../assets/pagebook/bp7.png',
+    bp8: '../../assets/pagebook/bp8.png',
+    bp9: '../../assets/pagebook/bp9.png',
+    bp10: '../../assets/pagebook/bp10.png',
+    bp11: '../../assets/pagebook/bp11.png',
+    bp12: '../../assets/pagebook/bp12.png',
+    bp13: '../../assets/pagebook/bp13.png',
+    bp14: '../../assets/pagebook/bp14.png',
+    bp15: '../../assets/pagebook/bp15.png'
 };
 
-/**
- * Creates a star rating component.
- * @param {number} rating - Number of stars to display (default: 5)
- * @returns {HTMLElement} The star rating container
- */
 function createStarRating(rating = 5) {
     const stars = [];
     for (let i = 0; i < 5; i++) {
         const isFilled = i < rating;
         stars.push(
             createElement('div', {
-                className: `relative shrink-0 size-5 ${isFilled ? 'opacity-100' : 'opacity-30'}`,
+                className: `star-icon-wrapper ${isFilled ? 'star-icon-filled' : 'star-icon-empty'}`,
                 'data-name': 'Star'
-            }, createImage(images.star, '', 'absolute inset-0 max-w-none object-contain pointer-events-none size-full'))
+            }, createImage(images.star, '', 'star-icon'))
         );
     }
     return createElement('div', {
-        className: "flex gap-1 items-center",
+        className: "star-rating-container",
         'data-name': 'Star Rating'
     }, ...stars);
 }
 
-/**
- * Shows a modal popup with a 50% opacity background.
- * @param {HTMLElement} content - The content to show in the modal
- */
+
 function showModal(content) {
     const overlay = createElement('div', {
-        className: "fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-4",
+        className: "modal-overlay",
         onclick: (e) => {
             if (e.target === overlay) {
                 overlay.remove();
@@ -117,13 +126,13 @@ function showModal(content) {
     });
 
     const modalBody = createElement('div', {
-        className: "bg-white rounded-3xl w-full max-w-2xl max-h-[80vh] overflow-y-auto shadow-2xl relative animate-in fade-in zoom-in duration-300",
+        className: "modal-body",
         onclick: (e) => e.stopPropagation()
     });
 
     // Close Button
     const closeBtn = createElement('button', {
-        className: "absolute top-4 right-6 text-gray-400 hover:text-gray-600 text-3xl font-bold z-10",
+        className: "modal-close",
         onclick: () => {
             overlay.remove();
             document.body.style.overflow = '';

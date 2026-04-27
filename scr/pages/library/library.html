@@ -5,24 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Library</title>
     <link rel="stylesheet" href="../../components/navigationbar/navigationbar.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../components/footer/footer.css">
+    <link rel="stylesheet" href="../../components/paginationnumber/paginationnumber.css">
+    <link rel="stylesheet" href="./librarycss/library.css">
 </head>
 <body>
-        <div id="header-placeholder"></div>
-        <script type="module">
-            import { HeaderComponent } from '../../components/navigationbar/navigationbar.js';
-            HeaderComponent('header-placeholder');
-        </script>
+    <div id="nav"></div>
+    <script type="module">
+        import { HeaderComponent } from '../../components/navigationbar/navigationbar.js';
+        HeaderComponent('nav');
+    </script>
+    
+    
     <div id="root"></div>
-    <!-- Load scripts in order -->
+    <!-- load script in order -->
     <script src="helper.js"></script>
     <script src="../../components/footer/footer.js"></script>
     <script src="filter.js"></script>
     <script src="../../components/paginationnumber/paginationnumber.js"></script>
-    <script src="../../scripts/router.js"></script>
+    <script src="../../scripts/rout_library.js"></script>
     <script src="detailbook.js"></script>
     <script src="chapter.js"></script>
     <script src="bookmark.js"></script>
+    <script src="bookpage.js"></script>
     <script src="book.js"></script>
     <script src="libraryp1.js"></script>
 </body>
