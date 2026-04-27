@@ -104,19 +104,23 @@ function Dropdown(label, options = [], currentStateKey) {
 }
 
 function mybook() {
+    const isActive = libraryState.showMarkedOnly;
     return createElement('div', {
-        className: "flex flex-col items-center justify-center h-14 px-4 shrink-0 cursor-pointer group"
+        className: `flex flex-col items-center justify-center h-14 px-4 shrink-0 cursor-pointer group ${isActive ? 'bg-indigo-50 rounded-2xl' : ''}`,
+        onclick: () => {
+            updateLibrary({ showMarkedOnly: !libraryState.showMarkedOnly });
+        }
     },
         createElement('div', {
             className: 'relative',
             'data-name': 'My_book'
         },
             createElement('p', {
-                className: "font-semibold text-lg text-indigo-600 whitespace-nowrap group-hover:text-indigo-800 transition-colors"
+                className: `font-semibold text-lg ${isActive ? 'text-indigo-800' : 'text-indigo-600'} whitespace-nowrap group-hover:text-indigo-800 transition-colors`
             }, 'My Book')
         ),
         createElement('div', {
-            className: 'h-0.5 w-0 bg-indigo-600 group-hover:w-full transition-all duration-300 rounded-full'
+            className: `h-0.5 ${isActive ? 'w-full' : 'w-0'} bg-indigo-600 group-hover:w-full transition-all duration-300 rounded-full`
         })
     );
 }

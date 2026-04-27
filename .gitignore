@@ -16,5 +16,9 @@ $RECYCLE.BIN/
 .Spotlight-V100
 .Trashes
 
+<<<<<<< HEAD
 # pdf files
+=======
+# PDF files
+>>>>>>> main
 *.pdf
