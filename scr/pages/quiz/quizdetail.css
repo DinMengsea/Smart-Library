@@ -1,0 +1,106 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* HEADER */
+.quiz-header {
+  display: flex;
+  align-items: center;
+  padding: 20px 40px;
+  border-bottom: 1px solid #aaa;
+}
+
+.back-btn {
+  font-size: 40px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.quiz-header h1 {
+  font-weight: 400;
+}
+
+/* QUESTION AREA */
+.question-section {
+  padding: 20px 40px;
+}
+
+#question-count {
+  margin-bottom: 10px;
+}
+
+/* BOX STYLE (IMPORTANT PART) */
+.question-card {
+  border: 1px solid #666;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 750px;
+}
+
+/* TITLE CENTER */
+.question-card h2 {
+  margin: 0;
+  padding: 12px;
+  border-bottom: 1px solid #666;
+  text-align: center;
+  font-weight: 400;
+}
+
+/* ANSWERS */
+#answer-list {
+  padding: 15px 40px;
+}
+
+.answer-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0;
+  font-size: 18px;
+}
+
+/* CUSTOM CHECKBOX LIKE IMAGE */
+.answer-option input {
+  width: 20px;
+  height: 20px;
+  border: 2px solid black;
+  appearance: none;
+  cursor: pointer;
+}
+
+.answer-option input:checked {
+  background: black;
+}
+
+/* FOOTER */
+.quiz-footer {
+  border-top: 1px solid #aaa;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score {
+  font-size: 24px;
+  margin: auto;
+}
+
+/* NEXT BUTTON STYLE */
+.next-btn {
+  background: #888;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* RESULT */
+.hidden {
+  display: none;
+}
