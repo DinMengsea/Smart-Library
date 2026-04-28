@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+
+  <!-- YOUR EXISTING NAVBAR -->
+  <link rel="stylesheet" href="../../components/navigationbar/navigationbar.css">
+
+  <!-- QUIZ STYLE -->
+  <link rel="stylesheet" href="./quizdetail.css">
+</head>
+<body>
+
+  <!-- NAVBAR COMPONENT -->
+  <div id="header-placeholder"></div>
+
+  <main class="quiz-page">
+
+    <!-- HEADER -->
+    <header class="quiz-header">
+      <button id="back-btn" class="back-btn">‹</button>
+      <h1>Quiz</h1>
+    </header>
+
+    <!-- QUESTION -->
+    <section class="question-section">
+      <p id="question-count">Question 1 of 5</p>
+
+      <div class="question-card">
+        <h2 id="question-title"></h2>
+        <div id="answer-list"></div>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section id="result-panel" class="hidden">
+      <h2>Finished</h2>
+      <p id="result-score"></p>
+      <div id="correct-answer-list"></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="quiz-footer">
+      <div class="score">Score : <span id="score">0</span></div>
+      <button id="next-btn" class="next-btn">Next ❯</button>
+    </footer>
+
+  </main>
+
+  <!-- LOAD NAVBAR -->
+  <script type="module">
+    import { HeaderComponent } from '../../components/navigationbar/navigationbar.js';
+    HeaderComponent('header-placeholder');
+  </script>
+
+  <script src="./quizdetail.js"></script>
+</body>
+</html>

@@ -203,9 +203,9 @@ function createBookCard(book) {
 
         <div class="book-actions">
           <a href="${startReadingHref}" class="action-btn primary">Start Reading</a>
-          <a href="${book.courseHref}" class="action-btn secondary" aria-disabled="true">
-            <img src="../../assets/icons/course.png" alt="">
-            View Course
+          <a href="../courses/coursedetail.html?course=${encodeURIComponent(book.title)}" class="action-btn secondary">
+          <img src="../../assets/icons/course.png" alt="">
+          View Course
           </a>
           <button
             class="action-btn js-mark-book ${marked ? 'btn-marked' : 'btn-mark'}"

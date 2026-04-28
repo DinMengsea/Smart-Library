@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Detail</title>
+
+  <link rel="stylesheet" href="../../components/navigationbar/navigationbar.css" />
+  <link rel="stylesheet" href="./course style/coursedetail.css" />
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <main class="course-detail-page">
+    <section class="course-title-section">
+      <h1 id="course-title">Course Title</h1>
+      <p>Lecturer : Ministry of Education</p>
+    </section>
+
+    <section class="course-layout">
+      <div class="video-section">
+        <iframe
+          id="video-frame"
+          src=""
+          title="Course Video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <aside class="lesson-card">
+        <div id="lesson-list"></div>
+        <button id="quiz-btn" class="quiz-btn" disabled>Take Quiz</button>
+      </aside>
+    </section>
+
+    <section class="certificate-card">
+      <span id="certificate-text">Complete this course to get your certificate 🔒</span>
+      <button id="certificate-btn" disabled>Get ur certificate</button>
+    </section>
+  </main>
+
+  <div id="certificate-modal" class="certificate-modal hidden">
+    <div class="certificate-box">
+      <h2>Certificate of Completion</h2>
+      <p>This certificate is proudly presented to</p>
+      <h3 id="student-name">Student Name</h3>
+      <p>Congratulations on completing this course</p>
+      <h4 id="certificate-course-name">Course Name</h4>
+      <button id="close-certificate">Close</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { HeaderComponent } from '../../components/navigationbar/navigationbar.js';
+    HeaderComponent('header-placeholder');
+  </script>
+
+  <script src="./coursedetail.js"></script>
+</body>
+</html>
