@@ -3,12 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./quiz.css">
+    <title>Quiz - Smart Library</title>
+    <link rel="stylesheet" href="../../components/navigationbar/navigationbar.css">
+    <link rel="stylesheet" href="quiz-detail.css">
+    <link rel="stylesheet" href="quiz.css">
 </head>
 <body>
-    <div class="">
-        
-    </div>
+
+    <div id="header-placeholder"></div>
+    <script type="module">
+        import { HeaderComponent } from '../../components/navigationbar/navigationbar.js';
+        HeaderComponent('header-placeholder');
+    </script>
+
+    <main class="quiz-container">
+        <div class="quiz-meta">
+            <a href="javascript:history.back()" class="back-link">&lt; Quiz</a>
+            <div class="timer-box">
+                <span>⏱️ Time Left: 10:00</span>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <section id="quiz-flow">
+            <p class="q-progress" id="q-counter">Question 1 of 5</p>
+            
+            <div class="question-wrapper">
+                <div class="question-header">
+                    <h2 id="question-title">What is the capital city of Cambodia?</h2>
+                </div>
+                <div class="options-list" id="answer-list">
+                    </div>
+            </div>
+
+            <div class="quiz-footer">
+                <div class="score-display">
+                    Score : <span id="score">0</span>
+                </div>
+                <button id="next-btn" class="btn-next">Next &gt;</button>
+            </div>
+        </section>
+
+        <div id="result-panel" class="result-overlay hidden">
+            <div class="result-card">
+                <h2>Results</h2>
+                <h1 id="result-score">0</h1>
+                <button onclick="location.reload()" class="btn-primary">Try Again</button>
+            </div>
+        </div>
+        <!-- <div class="question-wrapper">
+
+            <div class="question-header">
+                <h2 id="question-title"></h2>
+            </div>
+
+            <div class="options-list" id="answer-list"></div>
+
+        </div> -->
+    </main>
+
+    <script src="quizdetail.js"></script>
 </body>
 </html>
