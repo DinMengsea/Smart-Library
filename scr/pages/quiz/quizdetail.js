@@ -34,7 +34,7 @@ const qTitle = document.getElementById("question-title");
 const aList = document.getElementById("answer-list");
 const nextBtn = document.getElementById("next-btn");
 const scoreEl = document.getElementById("score");
-const qCounter = document.getElementById("q-counter");
+const qCounter = document.getElementById("qestion-count");
 
 function loadQuestion(){
 
