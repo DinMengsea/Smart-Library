@@ -12,9 +12,6 @@ const router = {
             case 'detail':
                 root.appendChild(BookDetailPage(data.book));
                 break;
-            case 'bookmark':
-                root.appendChild(BookmarkPage());
-                break;
             case 'bookpage':
                 root.appendChild(BookPage(data.book, data.chapter, data.unit));
                 break;
