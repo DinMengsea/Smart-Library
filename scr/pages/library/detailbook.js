@@ -130,10 +130,10 @@ function BookDetailPage(book) {
     );
     mainContent.appendChild(backBtn);
 
-    // Frame 1: Hero Section (Title, Author, Rating, Filters, Buttons)
+    //  Hero Section (Title, Author, Rating, Filters, Buttons)
     mainContent.appendChild(createBookDetails(book));
 
-    // Frame 2: Summary Section
+    //  Summary Section
     const summaryFrame = createElement('div', 'detail-summary-section');
     summaryFrame.appendChild(createElement('h2', 'detail-section-title', 'Summary'));
     

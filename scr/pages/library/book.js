@@ -450,8 +450,8 @@ function updateLibrary(newState) {
 }
 
 
-function ListDisplayBook() {
-    const filteredBooks = allBooks.filter(book => {
+function getFilteredBooks() {
+    return allBooks.filter(book => {
         const matchesSearch = book.title.toLowerCase().includes(libraryState.search.toLowerCase()) || 
                              book.author.toLowerCase().includes(libraryState.search.toLowerCase());
         const matchesCategory = libraryState.category === 'Category' || book.category === libraryState.category;
@@ -475,6 +475,11 @@ function ListDisplayBook() {
         
         return matchesSearch && matchesCategory && matchesSecondaryFilters && matchesMarked;
     });
+}
+
+
+function ListDisplayBook() {
+    const filteredBooks = getFilteredBooks();
 
     const itemsPerPage = 5;
     const startIndex = (libraryState.page - 1) * itemsPerPage;
@@ -502,27 +507,8 @@ function ListDisplayBook() {
 
 function TrendingBooksSection() {
     // Get total pages for the current filter
-    const filteredBooksCount = allBooks.filter(book => {
-        const matchesSearch = book.title.toLowerCase().includes(libraryState.search.toLowerCase()) || 
-                             book.author.toLowerCase().includes(libraryState.search.toLowerCase());
-        const matchesCategory = libraryState.category === 'Category' || book.category === libraryState.category;
-        const matchesMarked = !libraryState.showMarkedOnly || book.isMarked;
-        
-        let matchesSecondaryFilters = true;
-        if (libraryState.category === 'Educational') {
-            const matchesEducation = libraryState.education === 'Education' || 
-                                   (book.education && book.education.toLowerCase() === libraryState.education.toLowerCase());
-            const matchesGrade = libraryState.grade === 'Grade' || 
-                               (book.grade && book.grade.toLowerCase() === libraryState.grade.toLowerCase());
-            matchesSecondaryFilters = matchesEducation && matchesGrade;
-        } else {
-            const matchesYear = libraryState.year === 'Year' || book.year === libraryState.year;
-            const matchesLanguage = libraryState.language === 'Language' || book.language === libraryState.language;
-            matchesSecondaryFilters = matchesYear && matchesLanguage;
-        }
-        
-        return matchesSearch && matchesCategory && matchesSecondaryFilters && matchesMarked;
-    }).length;
+    const filteredBooks = getFilteredBooks();
+    const filteredBooksCount = filteredBooks.length;
     
     const totalPages = Math.ceil(filteredBooksCount / 5) || 1;
 
