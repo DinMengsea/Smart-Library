@@ -112,7 +112,6 @@ body {
     transition: var(--transition);
     transform: translateX(-50%);
 }
-
 .navlink:hover::after,
 .navlink.active::after {
     width: 100%;
@@ -140,6 +139,9 @@ body {
 }
 
 .signup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
     font-weight: 600;
@@ -157,6 +159,9 @@ body {
 }
 
 .login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
     font-weight: 600;
