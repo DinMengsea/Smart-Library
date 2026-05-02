@@ -13,7 +13,7 @@ body {
   padding: 40px 24px 80px;
 }
 
-/* TITLE */
+
 .books-header h1 {
   font-size: 48px;
   margin: 0 0 8px;
@@ -33,7 +33,7 @@ body {
   gap: 28px;
 }
 
-/* BOOK CARD */
+
 .book-card {
   background: #ffffff;
   border-radius: 26px;
@@ -51,7 +51,7 @@ body {
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.12);
 }
 
-/* IMAGE */
+
 .book-image {
   width: 230px;
   height: 320px;
@@ -65,7 +65,7 @@ body {
   transform: scale(1.03);
 }
 
-/* TEXT */
+
 .book-info h3 {
   margin: 0 0 12px;
   font-size: 30px;
@@ -92,7 +92,7 @@ body {
   font-weight: 600;
 }
 
-/* BUTTONS */
+
 .book-actions {
   display: flex;
   flex-wrap: wrap;
@@ -167,7 +167,7 @@ body {
   background-color: #f9fafb;
 }
 
-/* RATING */
+
 .book-rating {
   text-align: right;
   padding-top: 6px;
@@ -187,9 +187,6 @@ body {
   font-weight: 700;
 }
 
-/* ===================== */
-/* TABLET */
-/* ===================== */
 @media (max-width: 1024px) {
   .book-card {
     grid-template-columns: 190px 1fr;
@@ -220,9 +217,7 @@ body {
   }
 }
 
-/* ===================== */
-/* MOBILE */
-/* ===================== */
+
 @media (max-width: 768px) {
   .course-page {
     padding: 20px 16px 40px;
