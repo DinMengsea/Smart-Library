@@ -118,3 +118,19 @@ document.getElementById("result-score")
 }
 
 loadQuestion();
+
+function goPage(page){
+
+for(let i = 1; i <= 5; i++){
+
+let p = document.getElementById("page"+i);
+
+if(p){
+p.style.display = "none";
+}
+
+}
+
+document.getElementById("page"+page).style.display = "block";
+
+}
