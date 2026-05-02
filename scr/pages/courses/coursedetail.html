@@ -42,13 +42,25 @@
   </main>
 
   <div id="certificate-modal" class="certificate-modal hidden">
-    <div class="certificate-box">
-      <h2>Certificate of Completion</h2>
-      <p>This certificate is proudly presented to</p>
-      <h3 id="student-name">Student Name</h3>
-      <p>Congratulations on completing this course</p>
-      <h4 id="certificate-course-name">Course Name</h4>
-      <button id="close-certificate">Close</button>
+    <div class="certificate-card">
+      <button id="close-certificate" class="close-certificate">×</button>
+
+      <div class="certificate-border">
+
+        <img src="../../assets/logo/ourlogo.png" class="top-logo" alt="logo">
+        <h3>Certificate of Completion</h3>
+
+        <p class="certificate-subtitle">This certificate is proudly presented to</p>
+
+        <h1 id="student-name">Student Name</h1>
+
+        <p class="certificate-text">for successfully completing the course</p>
+
+        <h2 id="certificate-course-name">Course Name</h2>
+
+        <p class="certificate-date" id="certificate-date"></p>
+        </div>
+      </div>
     </div>
   </div>
 
