@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Detail</title>
+
+  <link rel="stylesheet" href="../../components/navigationbar/navigationbar.css" />
+  <link rel="stylesheet" href="./course style/coursedetail.css" />
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <main class="course-detail-page">
+    <section class="course-title-section">
+      <h1 id="course-title">Course Title</h1>
+      <p>Lecturer : Ministry of Education</p>
+    </section>
+
+    <section class="course-layout">
+      <div class="video-section">
+        <iframe
+          id="video-frame"
+          src=""
+          title="Course Video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <aside class="lesson-card">
+        <div id="lesson-list"></div>
+        <button id="quiz-btn" class="quiz-btn" disabled>Take Quiz</button>
+      </aside>
+    </section>
+
+    <section class="certificate-card">
+      <span id="certificate-text">Complete this course to get your certificate 🔒</span>
+      <button id="certificate-btn" disabled>Get ur certificate</button>
+    </section>
+  </main>
+
+  <div id="certificate-modal" class="certificate-modal hidden">
+    <div class="certificate-card">
+      <button id="close-certificate" class="close-certificate">×</button>
+
+      <div class="certificate-border">
+
+        <img src="../../assets/logo/ourlogo.png" class="top-logo" alt="logo">
+        <h3>Certificate of Completion</h3>
+
+        <p class="certificate-subtitle">This certificate is proudly presented to</p>
+
+        <h1 id="student-name">Student Name</h1>
+
+        <p class="certificate-text">for successfully completing the course</p>
+
+        <h2 id="certificate-course-name">Course Name</h2>
+
+        <p class="certificate-date" id="certificate-date"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { HeaderComponent } from '../../components/navigationbar/navigationbar.js';
+    HeaderComponent('header-placeholder');
+  </script>
+
+  <script src="./coursedetail.js"></script>
+</body>
+</html>

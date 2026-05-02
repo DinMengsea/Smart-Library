@@ -1,0 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  background: #f3f2fb;
+  color: #111827;
+}
+
+
+.course-detail-page {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 45px 24px 80px;
+}
+
+.course-title-section h1 {
+  margin: 0 0 14px;
+  font-size: 42px;
+  font-weight: 800;
+}
+
+.course-title-section p {
+  margin: 0 0 55px;
+  font-size: 20px;
+  color: #374151;
+}
+
+.course-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 45px;
+  align-items: start;
+}
+
+.video-section {
+  width: 100%;
+}
+
+#video-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 22px;
+  display: block;
+  background: #000;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.lesson-card {
+  background: #ededfa;
+  border-radius: 12px;
+  padding: 18px;
+  width: 100%;
+  max-width: 280px;
+  box-sizing: border-box;
+}
+
+.lesson-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid #555;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.lesson-row:last-child {
+  border-bottom: none;
+}
+
+.lesson-row.active {
+  color: #4b2dbb;
+}
+
+.lesson-row input {
+  width: 18px;
+  height: 18px;
+  accent-color: #4b2dbb;
+}
+
+.lesson-title {
+  flex: 1;
+}
+
+.lesson-status {
+  font-size: 18px;
+  color: #15803d;
+}
+
+.quiz-btn {
+  width: 100%;
+  margin-top: 22px;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #4b2dbb;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.quiz-btn:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+.certificate-card {
+  max-width: 720px;
+  margin: 90px auto 0;
+  background: #ededfa;
+  border-radius: 22px;
+  padding: 20px 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.certificate-card button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #4b2dbb;
+  color: white;
+  cursor: pointer;
+}
+
+.certificate-card button:disabled {
+  display: none;
+}
+
+/* ========================= */
+/* CERTIFICATE MODAL */
+/* ========================= */
+
+
+.top-logo {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 16px;
+
+  /* remove heavy box feel */
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.certificate-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.72);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  padding: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.certificate-card-modal {
+  width: 100%;
+  max-width: 920px;
+  background: #ffffff;
+  border-radius: 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.35);
+}
+
+/* Purple top decoration */
+.certificate-card-modal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 135px;
+  width: 100%;
+  background: linear-gradient(135deg, #4b2dbb, #7c5cff);
+  border-bottom-left-radius: 55% 35%;
+  border-bottom-right-radius: 55% 35%;
+}
+
+/* Light background pattern */
+.certificate-card-modal::after {
+  content: "";
+  position: absolute;
+  right: -120px;
+  bottom: -120px;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: rgba(75, 45, 187, 0.08);
+}
+
+.close-certificate {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #4b2dbb;
+  color: white;
+
+  border: none;
+  border-radius: 12px;
+
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1; /* IMPORTANT */
+
+  cursor: pointer;
+}
+
+.certificate-border {
+  position: relative;
+  z-index: 2;
+  margin: 18px;
+  padding: 60px 55px 55px;
+  border: 3px solid #ded8ff;
+  border-radius: 22px;
+  text-align: center;
+  background:
+    linear-gradient(rgba(255,255,255,0.94), rgba(255,255,255,0.94)),
+    radial-gradient(circle at top left, #ede9ff, transparent 35%),
+    radial-gradient(circle at bottom right, #f3f2fb, transparent 35%);
+}
+
+/* Book icon */
+
+.certificate-border h3 {
+  margin: 0 auto 28px;
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #2d247d;
+  text-transform: uppercase;
+}
+
+.certificate-subtitle {
+  margin: 0;
+  font-size: 20px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+#student-name {
+  display: inline-block;
+  margin: 22px auto;
+  padding: 0 45px 12px;
+  border-bottom: 2px solid #c8bfff;
+  font-size: 54px;
+  font-weight: 800;
+  color: #4b2dbb;
+}
+
+.certificate-text {
+  margin: 0;
+  font-size: 20px;
+  color: #6b7280;
+}
+
+#certificate-course-name {
+  margin: 20px auto 26px;
+  font-size: 34px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.certificate-date {
+  margin: 0;
+  font-size: 17px;
+  color: #4b5563;
+  font-weight: 600;
+}
+
+.certificate-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 28px;
+  margin-top: 45px;
+}
+
+.certificate-footer div {
+  flex: 1;
+}
+
+.certificate-footer span {
+  display: block;
+  height: 2px;
+  width: 150px;
+  background: #9ca3af;
+  margin: 0 auto 8px;
+}
+
+.certificate-footer p {
+  margin: 0;
+  font-size: 15px;
+  color: #4b5563;
+  font-weight: 700;
+}
+
+.certificate-logo {
+  flex: none !important;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4b2dbb, #7c5cff);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 6px solid #ded8ff;
+  box-shadow: 0 12px 25px rgba(75, 45, 187, 0.3);
+  font-size: 0;
+}
+
+.certificate-logo::before {
+  content: "✓";
+  font-size: 48px;
+  font-weight: 900;
+}
+
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media (max-width: 1024px) {
+  .course-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .lesson-card {
+    max-width: 430px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .certificate-card-modal {
+    border-radius: 20px;
+  }
+
+  .certificate-card-modal::before {
+    height: 115px;
+  }
+
+  .certificate-border {
+    margin: 12px;
+    padding: 135px 22px 35px;
+  }
+
+  .certificate-border h3 {
+    font-size: 24px;
+    letter-spacing: 1px;
+  }
+
+  .certificate-subtitle,
+  .certificate-text {
+    font-size: 16px;
+  }
+
+  #student-name {
+    font-size: 34px;
+    padding: 0 18px 8px;
+  }
+
+  #certificate-course-name {
+    font-size: 23px;
+  }
+
+  .certificate-footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .certificate-logo {
+    order: -1;
+    width: 80px;
+    height: 80px;
+  }
+}

@@ -26,11 +26,6 @@ function bootstrapLibraryFromUrl() {
         return false;
     }
 
-    if (requestedPage === 'bookmark') {
-        navigateTo('bookmark');
-        return true;
-    }
-
     if (requestedPage === 'detail' && requestedBookTitle) {
         const book = allBooks.find((entry) => entry.title === requestedBookTitle);
         if (book) {

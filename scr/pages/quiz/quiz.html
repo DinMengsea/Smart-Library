@@ -1,14 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./quiz.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Master</title>
+
+  <link rel="icon" type="image/png" href="../../assets/logo/ourlogo.png">
+  <link rel="stylesheet" href="../../components/navigationbar/navigationbar.css">
+  <link rel="stylesheet" href="quiz.css">
 </head>
+
 <body>
-    <div class="">
-        
-    </div>
+  <div id="header-placeholder"></div>
+
+  <script type="module">
+    import { HeaderComponent } from '../../components/navigationbar/navigationbar.js';
+    HeaderComponent('header-placeholder');
+  </script>
+
+  <main class="container">
+    <h1 class="title">Quiz Master</h1>
+    <p class="subtitle">Choose a course subject and start your quiz</p>
+
+    <section class="stats">
+      <div class="stat">
+        <span>📋</span>
+        <p>Total Quizzes</p>
+        <b id="total-quizzes">10</b>
+      </div>
+
+      <div class="stat">
+        <span>📚</span>
+        <p>Subjects</p>
+        <b>8</b>
+      </div>
+
+      <div class="stat">
+        <span>⭐</span>
+        <p>Smart Library</p>
+        <b>Quiz</b>
+      </div>
+    </section>
+
+    <section class="quiz-list">
+      <h2>All Course Quizzes</h2>
+
+      <table class="quiz-table">
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Course</th>
+            <th>Questions</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="quiz-table-body"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="quiz.js"></script>
 </body>
 </html>
