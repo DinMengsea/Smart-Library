@@ -24,7 +24,8 @@ function BookActions(isMarked = false, showViewCourse = false, onToggleMark, boo
                 className: `${buttonBaseClass} btn-view-course`,
                 type: 'button',
                 onclick: () => {
-                    console.log('View Course clicked');
+                    const bookTitle = typeof book === 'string' ? book : book.title;
+                    window.location.href = `../courses/coursedetail.html?course=${encodeURIComponent(bookTitle)}`;
                 }
             }, 
                 createElement('div', {
