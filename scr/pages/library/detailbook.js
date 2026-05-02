@@ -50,7 +50,7 @@ function FrameButton(book) {
   if (book.category === 'Educational') {
     const coursesButton = createElement('div', {
       className: 'btn-accent-large',
-      onclick: () => console.log('View Course clicked')
+      onclick: () => window.location.href = `../courses/coursedetail.html?course=${encodeURIComponent(book.title)}`
     });
     coursesButton.appendChild(createElement('p', "btn-accent-large-text", 'View Course'));
     content.appendChild(coursesButton);
