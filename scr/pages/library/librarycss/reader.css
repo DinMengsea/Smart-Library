@@ -169,25 +169,6 @@
   pointer-events: none;
 }
 
-.reader-nav-overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  z-index: 10;
-}
-
-@media (min-width: 640px) {
-  .reader-nav-overlay {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-}
-
 .reader-nav-btn {
   pointer-events: auto;
   padding: 1rem;
@@ -203,13 +184,6 @@
 .reader-nav-btn:hover {
   background-color: var(--blue-600);
   color: var(--white);
-}
-
-.reader-nav-icon {
-  width: 2rem;
-  height: 2rem;
-  filter: invert(1) brightness(2);
-  transition: all 0.2s;
 }
 
 .reader-footer {
