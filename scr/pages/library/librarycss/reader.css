@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background-color: #1a1a1a; /* Assuming a dark theme for reader from icons filter */
+  background-color: #1a1a1a; 
 }
 
 .reader-header {
@@ -18,7 +18,7 @@
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 50; /* Higher z-index to stay above other elements */
+  z-index: 50; 
   flex-shrink: 0;
 }
 
@@ -26,7 +26,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--white); /* White text for better visibility */
+  color: var(--white); 
   font-weight: 700;
   transition: all 0.2s;
   background: none;
@@ -47,7 +47,7 @@
   align-items: center;
   justify-content: center;
   transition: transform 0.2s;
-  /* Removed invert filter which might be making the icon dark on dark background */
+  
 }
 
 .reader-back-btn:hover .reader-back-icon-wrapper {
