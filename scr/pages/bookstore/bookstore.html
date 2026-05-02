@@ -1,60 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="../../assets/logo/ourlogo.png">
-  <title>Smart Library</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Global CSS -->
-  <link rel="stylesheet" href="../../css/style.css">
+  <title>Bookstore | Smart Library</title>
 
-  <!-- Page CSS -->
-  <link rel="stylesheet" href="bookstore.css">
+  <link rel="stylesheet" href="../../components/navigationbar/navigationbar.css" />
+  <link rel="stylesheet" href="../../components/footer/footer.css" />
+  <link rel="stylesheet" href="bookstore.css" />
 </head>
+
 <body>
+  <div id="header"></div>
 
-  <div class="container">
-    <h2>Book Store</h2>
-
-    <div class="grid">
-
-      <div class="card">
-        <img src="../../assets/book1.jpg">
-        <h3>Book 1</h3>
-        <p>$12</p>
-        <button onclick="goToPayment('Book 1', 12, '../../assets/book1.jpg')">
-          Buy Now
-        </button>
+  <main class="bookstore-page">
+    <section class="filter-section">
+      <div class="search-wrap">
+        <img src="../../assets/icons/search.png" alt="Search" />
+        <input id="searchInput" type="text" placeholder="Search for books..." />
       </div>
 
-      <div class="card">
-        <img src="../../assets/book2.jpg">
-        <h3>Book 2</h3>
-        <p>$15</p>
-        <button onclick="goToPayment('Book 2', 15, '../../assets/book2.jpg')">
-          Buy Now
-        </button>
+      <div class="filters">
+        <select id="categoryFilter">
+          <option value="all">Category</option>
+          <option value="fiction">Fiction</option>
+          <option value="self-help">Self Help</option>
+          <option value="science">Science</option>
+        </select>
+
+        <select id="dateFilter">
+          <option value="all">Date</option>
+          <option value="new">New</option>
+          <option value="old">Old</option>
+        </select>
+
+        <button id="myBookBtn" type="button">My Book</button>
       </div>
+    </section>
 
-      <div class="card">
-        <img src="../../assets/book3.jpg">
-        <h3>Book 3</h3>
-        <p>$18</p>
-        <button onclick="goToPayment('Book 3', 18, '../../assets/book3.jpg')">
-          Buy Now
-        </button>
-      </div>
+    <section class="books-section">
+      <h2 id="sectionTitle">All Books</h2>
+      <div class="book-grid" id="bookGrid"></div>
+    </section>
+  </main>
 
-    </div>
-  </div>
+  <div id="footer"></div>
 
-  <script>
-    function goToPayment(title, price, image) {
-      const book = { title, price, image };
-      localStorage.setItem("selectedBook", JSON.stringify(book));
-      window.location.href = "../payment/payment.html";
-    }
+  <script type="module">
+    import { HeaderComponent } from "../../components/navigationbar/navigationbar.js";
+    HeaderComponent("header");
   </script>
 
+  <script src="../library/helper.js"></script>
+  <script src="../../components/footer/footer.js"></script>
+  <script>
+    FooterComponent("footer");
+  </script>
+
+  <script src="bookstore.js"></script>
 </body>
 </html>

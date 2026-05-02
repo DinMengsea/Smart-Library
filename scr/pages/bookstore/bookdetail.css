@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  background: #f8fafc;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+.book-detail-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 35px 24px 20px;
+}
+
+.back-btn {
+  border: none;
+  background: transparent;
+  color: #4f46e5;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+
+.stars {
+  color: #fbbf24;
+  font-size: 20px;
+  margin: 16px 0;
+}
+
+.stars span {
+  color: #374151;
+  font-size: 15px;
+  margin-left: 10px;
+  font-weight: 600;
+}
+
+.bookstore-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 26px;
+}
+
+.buy-btn,
+.mark-btn {
+  padding: 14px 28px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.buy-btn {
+  background: #4f46e5;
+  color: white;
+}
+
+.mark-btn {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.buy-btn:hover {
+  background: #4338ca;
+}
+
+@media (max-width: 768px) {
+  .book-detail-page {
+    padding: 24px 16px;
+  }
+
+  .bookstore-actions {
+    flex-direction: column;
+  }
+
+  .buy-btn,
+  .mark-btn {
+    width: 100%;
+  }
+}

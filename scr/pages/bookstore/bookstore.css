@@ -1,66 +1,184 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
+  font-family: "Inter", Arial, sans-serif;
+  background: #f8fafc;
+  color: #1f2937;
 }
 
-.container {
-  padding: 30px;
-}
-
-h2 {
-  margin-bottom: 20px;
-}
-
-/* Grid */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-}
-
-/* Card */
-.card {
-  background: white;
-  border-radius: 12px;
-  padding: 12px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-/* Image */
-.card img {
+.bookstore-page {
   width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 8px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 24px 60px;
 }
 
-/* Title */
-.card h3 {
-  margin: 10px 0;
+.filter-section {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  margin-bottom: 36px;
 }
 
-/* Price */
-.card p {
-  color: #4b3cc4;
-  font-weight: bold;
+.search-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f1f5f9;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 0 16px;
 }
 
-/* Button */
-.card button {
-  padding: 8px 12px;
+.search-wrap img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.search-wrap input {
+  width: 100%;
   border: none;
-  background: #4b3cc4;
-  color: white;
-  border-radius: 6px;
+  outline: none;
+  background: transparent;
+  padding: 16px 0;
+  font-size: 16px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.filters select,
+.filters button {
+  min-width: 150px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #374151;
+  font-weight: 600;
   cursor: pointer;
 }
 
-.card button:hover {
-  opacity: 0.9;
+.filters button {
+  background: #4f46e5;
+  color: white;
+  border: none;
+}
+
+.books-section h2 {
+  font-size: 28px;
+  margin-bottom: 22px;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+
+.book-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 14px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  transition: 0.25s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-6px);
+}
+
+.book-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 14px;
+  background: #e5e7eb;
+}
+
+.book-title {
+  margin-top: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.book-price {
+  margin-top: 6px;
+  color: #4f46e5;
+  font-weight: 800;
+}
+
+.no-result {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 50px;
+  background: white;
+  border-radius: 18px;
+  color: #6b7280;
+}
+
+#gradeFilter {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .book-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 850px) {
+  .book-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .book-card img {
+    height: 230px;
+  }
+}
+
+@media (max-width: 600px) {
+  .bookstore-page {
+    padding: 24px 16px 40px;
+  }
+
+  .filter-section {
+    padding: 18px;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
+  .filters select,
+  .filters button {
+    width: 100%;
+  }
+
+  .book-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .book-card img {
+    height: 210px;
+  }
+
+  .books-section h2 {
+    font-size: 24px;
+  }
 }

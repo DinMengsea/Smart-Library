@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Detail</title>
+
+  <link rel="stylesheet" href="../../components/navigationbar/navigationbar.css" />
+  <link rel="stylesheet" href="../../components/footer/footer.css" />
+  <link rel="stylesheet" href="../library/librarycss/library.css" />
+  <link rel="stylesheet" href="../library/librarycss/bookdetail.css" />
+  <link rel="stylesheet" href="bookdetail.css" />
+</head>
+
+<body>
+  <div id="nav"></div>
+
+  <main class="book-detail-page">
+    <button class="back-btn" onclick="window.location.href='bookstore.html'">
+      ← Back to Bookstore
+    </button>
+
+    <section class="detail-hero-section">
+      <div class="detail-cover-wrapper">
+        <img id="bookImage" class="detail-cover-image" src="../../assets/book/book7.png" alt="Book cover" />
+      </div>
+
+      <div class="detail-info-container">
+        <h1 id="bookTitle" class="detail-title">This Story Might Save Your Life</h1>
+        <p id="bookAuthor" class="detail-author">by Ben West</p>
+
+        <div class="stars">★★★★★ <span id="bookRating">5.0 Rating</span></div>
+
+        <div class="detail-metadata-grid">
+          <div class="detail-metadata-item">
+            <span class="detail-metadata-label">Language</span>
+            <span class="detail-metadata-value">English</span>
+          </div>
+
+          <div class="detail-metadata-item">
+            <span class="detail-metadata-label">Year</span>
+            <span class="detail-metadata-value">2026</span>
+          </div>
+
+          <div class="detail-metadata-item">
+            <span class="detail-metadata-label">Format</span>
+            <span class="detail-metadata-value">Paperback</span>
+          </div>
+
+          <div class="detail-metadata-item">
+            <span class="detail-metadata-label">Status</span>
+            <span class="detail-status-value">Available</span>
+          </div>
+        </div>
+
+        <div class="bookstore-actions">
+            <button class="buy-btn" id="buyBtn">
+                Buy Now
+            </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-summary-section">
+      <h2 class="detail-section-title">Description</h2>
+      <p id="bookDescription" class="detail-summary-text">
+        A suspenseful podcast mystery that will keep you guessing. Benny Abbott and Joy Moore host one of the most beloved podcasts in the world. Each week, they captivate listeners with survival stories, humor, and life-affirming reflections. But their next survival story may be their own.
+      </p>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+
+  <script type="module">
+    import { HeaderComponent } from "../../components/navigationbar/navigationbar.js";
+    HeaderComponent("nav");
+  </script>
+
+  <script src="../library/helper.js"></script>
+  <script src="../../components/footer/footer.js"></script>
+  <script>
+    FooterComponent("footer");
+  </script>
+
+  <script src="bookdetail.js"></script>
+</body>
+</html>
