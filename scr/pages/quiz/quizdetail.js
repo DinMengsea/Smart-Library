@@ -282,7 +282,20 @@ function finishQuiz() {
 
     correctAnswerList.appendChild(item);
   });
+
+  const returnBtn = document.createElement("button");
+  returnBtn.className = "return-quiz-btn";
+  returnBtn.textContent = "Return to Quiz Page";
+  returnBtn.addEventListener("click", () => {
+    window.location.href = "quiz.html";
+  });
+
+  resultPanel.appendChild(returnBtn);
 }
+
+backBtn.addEventListener("click", () => {
+  window.location.href = "quiz.html";
+});
 
 backBtn.addEventListener("click", () => {
   window.history.back();

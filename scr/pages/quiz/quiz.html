@@ -1,171 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<title>Quiz Master</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Master</title>
 
-<link rel="stylesheet" href="../../components/navigationbar/navigationbar.css">
-<link rel="stylesheet" href="quiz.css">
-
-
+  <link rel="icon" type="image/png" href="../../assets/logo/ourlogo.png">
+  <link rel="stylesheet" href="../../components/navigationbar/navigationbar.css">
+  <link rel="stylesheet" href="quiz.css">
 </head>
 
 <body>
+  <div id="header-placeholder"></div>
 
-<!-- NAVBAR COMPONENT -->
+  <script type="module">
+    import { HeaderComponent } from '../../components/navigationbar/navigationbar.js';
+    HeaderComponent('header-placeholder');
+  </script>
 
-<div id="header-placeholder"></div>
+  <main class="container">
+    <h1 class="title">Quiz Master</h1>
+    <p class="subtitle">Choose a course subject and start your quiz</p>
 
-<script type="module">
-import { HeaderComponent } from '../../components/navigationbar/navigationbar.js';
-HeaderComponent('header-placeholder');
-</script>
+    <section class="stats">
+      <div class="stat">
+        <span>📋</span>
+        <p>Total Quizzes</p>
+        <b id="total-quizzes">10</b>
+      </div>
 
-<main class="container">
+      <div class="stat">
+        <span>📚</span>
+        <p>Subjects</p>
+        <b>8</b>
+      </div>
 
-<h1 class="title">Quiz Master</h1>
+      <div class="stat">
+        <span>⭐</span>
+        <p>Smart Library</p>
+        <b>Quiz</b>
+      </div>
+    </section>
 
-<!-- PAGE 1 (QUIZ LIST) -->
+    <section class="quiz-list">
+      <h2>All Course Quizzes</h2>
 
-<section id="page1">
+      <table class="quiz-table">
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Course</th>
+            <th>Questions</th>
+            <th>Action</th>
+          </tr>
+        </thead>
 
-<div class="stats">
+        <tbody id="quiz-table-body"></tbody>
+      </table>
+    </section>
+  </main>
 
-<div class="stat">
-📋 <br>
-Total Quizzes <br>
-<b>24</b>
-</div>
-
-<div class="stat">
-⏱ <br>
-Total Attempts <br>
-<b>85</b>
-</div>
-
-<div class="stat">
-📈 <br>
-Average Score <br>
-<b>78%</b>
-</div>
-
-</div>
-
-<table class="quiz-table">
-
-<tr>
-<th>Subject</th>
-<th>Attempt</th>
-<th>Average Score</th>
-<th>Last Update</th>
-</tr>
-
-<tr onclick="goPage(2)">
-<td>General Khmer Knowledge</td>
-<td>28</td>
-<td>79%</td>
-<td>June 28 2022</td>
-</tr>
-
-<tr onclick="goPage(2)">
-<td>Web Development Basic</td>
-<td>28</td>
-<td>79%</td>
-<td>June 28 2022</td>
-</tr>
-
-<tr onclick="goPage(2)">
-<td>Math</td>
-<td>28</td>
-<td>79%</td>
-<td>June 28 2022</td>
-</tr>
-
-</table>
-
-</section>
-
-<!-- PAGE 2 -->
-
-<section id="page2" class="hidden">
-
-<h3>Question 1 of 3</h3>
-
-<div class="quiz-box">
-
-<p>1. What is the capital city of Cambodia?</p>
-
-<label><input type="radio" name="q1"> Siem Reap</label>
-<label><input type="radio" name="q1"> Battambang</label>
-<label><input type="radio" name="q1" value="correct"> Phnom Penh</label>
-<label><input type="radio" name="q1"> Kampong Cham</label>
-
-</div>
-
-</section>
-
-<!-- PAGE 3 -->
-
-<section id="page3" class="hidden">
-
-<h3>Question 2 of 3</h3>
-
-<div class="quiz-box">
-
-<p>2. Which language is used for web pages?</p>
-
-<label><input type="radio" name="q2"> Python</label>
-<label><input type="radio" name="q2" value="correct"> HTML</label>
-<label><input type="radio" name="q2"> Java</label>
-<label><input type="radio" name="q2"> C++</label>
-
-</div>
-
-</section>
-
-<!-- PAGE 4 -->
-
-<section id="page4" class="hidden">
-
-<h3>Question 3 of 3</h3>
-
-<div class="quiz-box">
-
-<p>3. 2 + 2 = ?</p>
-
-<label><input type="radio" name="q3"> 3</label>
-<label><input type="radio" name="q3"> 5</label>
-<label><input type="radio" name="q3" value="correct"> 4</label>
-<label><input type="radio" name="q3"> 6</label>
-
-</div>
-
-</section>
-<!-- PAGE 5 RESULT -->
-<section id="page5" class="hidden">
-    <div id="result-panel">
-        <h2>Quiz Result</h2>
-        <!-- Changed id from "score" to "result-score" to match your JS -->
-        <h1 id="result-score">
-
-        </h1>
-        <button onclick="location.reload()" style="padding: 10px; cursor: pointer;">Restart Quiz</button>
-    </div>
-</section>
-
-<div class="pagination">
-
-<button onclick="goPage(1)">1</button>
-<button onclick="goPage(2)">2</button>
-<button onclick="goPage(3)">3</button>
-<button onclick="goPage(4)">4</button>
-<button onclick="goPage(5)">5</button>
-
-</div>
-</main>
-
-<script src="quizdetail.js"></script>
-
+  <script src="quiz.js"></script>
 </body>
 </html>
