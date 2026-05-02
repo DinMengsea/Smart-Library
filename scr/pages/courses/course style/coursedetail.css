@@ -132,11 +132,6 @@ body {
   display: none;
 }
 
-/* ========================= */
-/* CERTIFICATE MODAL */
-/* ========================= */
-
-
 .top-logo {
   width: 55px;
   height: 55px;
@@ -176,7 +171,6 @@ body {
   box-shadow: 0 35px 80px rgba(0, 0, 0, 0.35);
 }
 
-/* Purple top decoration */
 .certificate-card-modal::before {
   content: "";
   position: absolute;
@@ -189,7 +183,7 @@ body {
   border-bottom-right-radius: 55% 35%;
 }
 
-/* Light background pattern */
+
 .certificate-card-modal::after {
   content: "";
   position: absolute;
@@ -221,7 +215,7 @@ body {
 
   font-size: 22px;
   font-weight: 800;
-  line-height: 1; /* IMPORTANT */
+  line-height: 1; 
 
   cursor: pointer;
 }
@@ -240,7 +234,6 @@ body {
     radial-gradient(circle at bottom right, #f3f2fb, transparent 35%);
 }
 
-/* Book icon */
 
 .certificate-border h3 {
   margin: 0 auto 28px;
@@ -336,10 +329,6 @@ body {
   font-weight: 900;
 }
 
-
-/* ========================= */
-/* RESPONSIVE */
-/* ========================= */
 
 @media (max-width: 1024px) {
   .course-layout {

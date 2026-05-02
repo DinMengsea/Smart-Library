@@ -1,4 +1,4 @@
-/* Match reference style for Category only */
+
 
 body {
   font-family: "Inter", Arial, sans-serif;
@@ -18,7 +18,6 @@ body {
   max-width: 12rem;
 }
 
-/* closed bar */
 .dropdown-header {
   background-color: #ffffff;
   height: 2.5rem;
@@ -49,7 +48,6 @@ body {
   margin: 0;
 }
 
-/* chevron */
 .dropdown-icon {
   flex-shrink: 0;
   width: 0.75rem;
@@ -67,7 +65,7 @@ body {
   transform: rotate(180deg);
 }
 
-/* menu */
+
 .dropdown-list {
   position: absolute;
   top: 100%;
@@ -92,7 +90,7 @@ body {
   opacity: 1;
 }
 
-/* scrollbar */
+
 .dropdown-list::-webkit-scrollbar {
   width: 6px;
 }
@@ -111,7 +109,7 @@ body {
   background: #d1d5db;
 }
 
-/* options */
+
 .dropdown-item {
   padding: 0.625rem 1rem;
   cursor: pointer;
@@ -138,12 +136,11 @@ body {
   font-weight: 600;
 }
 
-/* spacing under category before title */
 #book-section-title {
   margin-top: 1.5rem;
 }
 
-/* tablet */
+
 @media (min-width: 640px) {
   .dropdown-header {
     height: 2.75rem;
@@ -158,7 +155,6 @@ body {
   }
 }
 
-/* desktop width */
 @media (min-width: 1024px) {
   .dropdown {
     width: 12rem;

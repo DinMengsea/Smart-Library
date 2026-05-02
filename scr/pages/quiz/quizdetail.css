@@ -3,7 +3,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* HEADER */
 .quiz-header {
   display: flex;
   align-items: center;
@@ -23,7 +22,7 @@ body {
   font-weight: 400;
 }
 
-/* QUESTION AREA */
+
 .question-section {
   padding: 20px 40px;
 }
@@ -32,7 +31,7 @@ body {
   margin-bottom: 10px;
 }
 
-/* BOX STYLE (IMPORTANT PART) */
+
 .question-card {
   border: 1px solid #666;
   border-radius: 8px;
@@ -40,7 +39,7 @@ body {
   max-width: 750px;
 }
 
-/* TITLE CENTER */
+
 .question-card h2 {
   margin: 0;
   padding: 12px;
@@ -49,7 +48,7 @@ body {
   font-weight: 400;
 }
 
-/* ANSWERS */
+
 #answer-list {
   padding: 15px 40px;
 }
@@ -62,7 +61,6 @@ body {
   font-size: 18px;
 }
 
-/* CUSTOM CHECKBOX LIKE IMAGE */
 .answer-option input {
   width: 20px;
   height: 20px;
@@ -75,7 +73,7 @@ body {
   background: black;
 }
 
-/* FOOTER */
+
 .quiz-footer {
   border-top: 1px solid #aaa;
   padding: 20px;
@@ -89,7 +87,7 @@ body {
   margin: auto;
 }
 
-/* NEXT BUTTON STYLE */
+
 .next-btn {
   background: #888;
   border: none;
@@ -100,7 +98,7 @@ body {
   cursor: pointer;
 }
 
-/* RESULT */
+
 .hidden {
   display: none;
 }
